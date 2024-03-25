@@ -3,10 +3,24 @@ import { Grid, GridProps } from "@mui/material";
 function MainGrid({ first, second, containerProps }: Props) {
   return (
     <Grid container {...containerProps}>
-      <Grid item {...first?.props}>
+      <Grid
+        item
+        xs={12}
+        md={6}
+        lg={5}
+        px={{ xs: undefined, lg: 2 }}
+        {...first?.props}
+      >
         {first?.children}
       </Grid>
-      <Grid item {...second?.props}>
+      <Grid
+        item
+        xs={12}
+        md={6}
+        lg={7}
+        px={{ xs: undefined, lg: 2 }}
+        {...second?.props}
+      >
         {second?.children}
       </Grid>
     </Grid>
@@ -14,7 +28,7 @@ function MainGrid({ first, second, containerProps }: Props) {
 }
 
 type Props = {
-  containerProps: GridProps;
+  containerProps?: GridProps;
   first?: MainGridItemProps;
   second?: MainGridItemProps;
 };
