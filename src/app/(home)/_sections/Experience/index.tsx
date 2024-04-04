@@ -1,11 +1,12 @@
 import HoverableBox from "@/components/HoverableBox";
 import { Stack, Typography } from "@mui/material";
+import ExperienceCard from "./_ExperienceCard";
 
 function ExperienceSection() {
   return (
-    <HoverableBox>
-      <Typography>Hello Nigga</Typography>
-    </HoverableBox>
+    <Stack>
+      <ExperienceCard />
+    </Stack>
   );
 }
 

@@ -9,7 +9,7 @@ function CustomChip(props: ChipProps) {
       sx={{
         bgcolor: `${color}.lightest`,
         color: `${color}.main`,
-        fontWeight: 600,
+        fontWeight: 500,
         height: 28,
         ...props.sx,
       }}
