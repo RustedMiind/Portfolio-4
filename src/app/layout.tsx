@@ -8,6 +8,7 @@ import { Provider as JotaiProvider } from "jotai";
 import { SnackbarProvider } from "notistack";
 import { Grow, Stack, ThemeProvider, Container } from "@mui/material";
 import NotiStackProvider from "./SnackbarProvider";
+import MouseEffect from "./_MouseEffect";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,6 +28,11 @@ export default function RootLayout({
             <JotaiProvider>
               <Stack component={"body"} bgcolor={"background.default"}>
                 {children}
+                <div
+                  id="mouseEffectContainer"
+                  className="mouse-effect-container"
+                ></div>
+                <MouseEffect />
               </Stack>
             </JotaiProvider>
           </NotiStackProvider>
