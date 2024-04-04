@@ -1,11 +1,18 @@
 "use client";
 import { green } from "@mui/material/colors";
-import { Shadows, createTheme } from "@mui/material/styles";
+import {
+  Shadows,
+  SimplePaletteColorOptions,
+  createTheme,
+} from "@mui/material/styles";
 
 // Extend the TypeBackground and PaletteColorOptions interfaces
 declare module "@mui/material/styles" {
   interface TypeBackground {
     medTransparent: string;
+  }
+  interface PaletteColorOptions extends SimplePaletteColorOptions {
+    lightest?: string;
   }
 }
 
@@ -13,10 +20,12 @@ declare module "@mui/material/styles" {
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#50e1ce",
+      main: "rgb(94, 234, 212)",
+      lightest: "#50e1ce33",
     },
     secondary: {
       main: "#FB2E86",
+      lightest: "#FB2E8655",
     },
     background: {
       default: "#0f1729",
