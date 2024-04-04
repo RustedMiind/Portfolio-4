@@ -10,7 +10,7 @@ export default function Home() {
       <Container sx={{ position: "relative" }} maxWidth="lg">
         <Drawer />
         <Stack pl={DRAWER_WIDTH}>
-          <Stack spacing={1}>
+          <Stack spacing={12}>
             <AboutSection />
             <ExperienceSection />
           </Stack>
