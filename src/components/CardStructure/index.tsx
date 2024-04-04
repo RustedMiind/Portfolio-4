@@ -9,7 +9,7 @@ function CardStructure({ mainContent, mediaContent }: Props) {
           {mediaContent}
         </Grid>
         <Grid item xs={9}>
-          {mediaContent}
+          {mainContent}
         </Grid>
       </Grid>
     </HoverableBox>
