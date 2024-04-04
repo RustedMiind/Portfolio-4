@@ -34,7 +34,7 @@ const theme = createTheme({
       main: green.A400,
     },
     text: {
-      primary: "#cfd9ed",
+      primary: "rgb(229, 231, 235)",
       secondary: "#7c8fb0",
     },
   },

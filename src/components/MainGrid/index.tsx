@@ -13,16 +13,18 @@ function MainGrid({ first, second, containerProps }: Props) {
       >
         {first?.children}
       </Grid>
-      <Grid
-        item
-        xs={12}
-        md={6}
-        lg={7}
-        px={{ xs: undefined, lg: 2 }}
-        {...second?.props}
-      >
-        {second?.children}
-      </Grid>
+      {second && (
+        <Grid
+          item
+          xs={12}
+          md={6}
+          lg={7}
+          px={{ xs: undefined, lg: 2 }}
+          {...second?.props}
+        >
+          {second?.children}
+        </Grid>
+      )}
     </Grid>
   );
 }

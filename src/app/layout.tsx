@@ -6,7 +6,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import theme from "@/theme/theme";
 import { Provider as JotaiProvider } from "jotai";
 import { SnackbarProvider } from "notistack";
-import { Grow, Stack, ThemeProvider } from "@mui/material";
+import { Grow, Stack, ThemeProvider, Container } from "@mui/material";
 import NotiStackProvider from "./SnackbarProvider";
 
 export const metadata: Metadata = {
