@@ -3,19 +3,11 @@ import { green } from "@mui/material/colors";
 import { Shadows, createTheme } from "@mui/material/styles";
 
 // Extend the TypeBackground and PaletteColorOptions interfaces
-// declare module "@mui/material/styles" {
-//   interface TypeBackground {
-//     med: string;
-//   }
-
-//   interface SimplePaletteColorOptions {
-//     lightest?: string;
-//   }
-
-//   interface TypeText {
-//     solid?: string;
-//   }
-// }
+declare module "@mui/material/styles" {
+  interface TypeBackground {
+    medTransparent: string;
+  }
+}
 
 // Create the MUI theme
 const theme = createTheme({
@@ -29,6 +21,7 @@ const theme = createTheme({
     background: {
       default: "#0f1729",
       paper: "#161f30",
+      medTransparent: "rgba(30, 41, 59, 0.5)",
     },
     success: {
       main: green.A400,
