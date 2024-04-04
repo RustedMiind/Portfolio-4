@@ -1,14 +1,22 @@
 import { Box, BoxProps, SxProps, Theme } from "@mui/material";
 
 const styles: SxProps<Theme> = {
-  transition: "all 125ms ease-in",
   borderRadius: 1,
   border: "1px solid transparent",
+  borderStyle: "inset",
+  "&, *": {
+    transition: "all 100ms ease-in",
+  },
   "&:hover": {
     // transform: "scale(1.01)",
-    boxShadow: "-1px -1px 0px  #FFFFFF33",
+    borderTop: "1px solid #FFFFFF33",
+    // boxShadow: "-1px -1px 0px  #FFFFFF33",
+    boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.1)",
     bgcolor: "background.medTransparent",
     backdropFilter: "blur(10px)",
+    ".text-color-effect": {
+      color: "primary.main",
+    },
   },
 };
 
