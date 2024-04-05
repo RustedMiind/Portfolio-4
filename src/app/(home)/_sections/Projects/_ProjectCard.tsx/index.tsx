@@ -1,16 +1,31 @@
+import AspectRatio from "@/components/AspectRatio";
 import CardStructure from "@/components/CardStructure";
 import CustomChip from "@/components/CustomChip";
-import { Chip, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import { grey } from "@mui/material/colors";
 
-function ExperienceCard() {
+function ProjectCard() {
   return (
     <CardStructure
+      sx={{
+        "&:hover .card-structure-media": {
+          borderColor: "primary.dark",
+        },
+      }}
       mediaContent={
-        <Stack>
-          <Typography variant="body2" color={"text.secondary"}>
-            2024 - Present
-          </Typography>
-        </Stack>
+        <AspectRatio
+          ratio={16 / 9}
+          boxProps={{
+            sx: {
+              border: "2px solid transparent",
+              borderColor: grey[900],
+            },
+            className: "card-structure-media",
+          }}
+        >
+          <img src="https://picsum.photos/id/237/200/300" alt="project" />
+        </AspectRatio>
       }
       mainContent={
         <Stack spacing={0.5}>
@@ -19,24 +34,17 @@ function ExperienceCard() {
             className="text-color-effect"
             fontWeight={600}
           >
-            I am currently working as a Senior Software Engineer at Vision
-            Dimensions.
+            ERP Dashboard
           </Typography>
           <Typography variant="body2" color={"text.secondary"}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
             sapiente ipsum eveniet eligendi praesentium reprehenderit sequi
             atque ullam, incidunt corporis? Corporis doloremque fuga sapiente
-            optio ullam pariatur adipisci mollitia. Consectetur itaque hic
-            doloribus in neque molestias reiciendis eaque similique accusamus!
           </Typography>
           <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-            <CustomChip color="primary" label="JavaScript" />
             <CustomChip color="primary" label="TypeScript" />
             <CustomChip color="primary" label="React" />
-            <CustomChip color="primary" label="Next" />
             <CustomChip color="primary" label="MUI" />
-            <CustomChip color="primary" label="Nest JS" />
-            <CustomChip color="primary" label="SQL" />
           </Stack>
         </Stack>
       }
@@ -44,4 +52,4 @@ function ExperienceCard() {
   );
 }
 
-export default ExperienceCard;
+export default ProjectCard;
