@@ -5,10 +5,10 @@ function CardStructure({ mainContent, mediaContent, sx }: Props) {
   return (
     <HoverableBox sx={{ p: 2, ...sx }}>
       <Grid container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item xs={9} md={3}>
           {mediaContent}
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={12} md={9}>
           {mainContent}
         </Grid>
       </Grid>
