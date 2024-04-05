@@ -32,6 +32,27 @@ function Drawer() {
             users with pixel-perfect design, ensuring accessibility and
             engagement at every step.
           </Typography>
+          <Stack
+            sx={{
+              ".active": {
+                color: "red",
+              },
+            }}
+            spacing={1}
+          >
+            <Typography data-to-scrollspy-id="about-section" variant="body1">
+              About
+            </Typography>
+            <Typography
+              data-to-scrollspy-id="experience-section"
+              variant="body1"
+            >
+              About
+            </Typography>
+            <Typography data-to-scrollspy-id="projects-section" variant="body1">
+              About
+            </Typography>
+          </Stack>
         </Stack>
       </Stack>
     </Container>

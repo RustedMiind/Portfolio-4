@@ -4,6 +4,7 @@ import Drawer, { DRAWER_WIDTH } from "./_Drawer";
 import AboutSection from "./_sections/About";
 import ExperienceSection from "./_sections/Experience";
 import ProjectsSection from "./_sections/Projects";
+import ScrollSpyContainer from "./ScrollSpyContainer";
 
 export default function Home() {
   return (
@@ -12,9 +13,11 @@ export default function Home() {
         <Drawer />
         <Stack pl={DRAWER_WIDTH}>
           <Stack spacing={12}>
-            <AboutSection />
-            <ExperienceSection />
-            <ProjectsSection />
+            <ScrollSpyContainer>
+              <AboutSection />
+              <ExperienceSection />
+              <ProjectsSection />
+            </ScrollSpyContainer>
           </Stack>
         </Stack>
       </Container>

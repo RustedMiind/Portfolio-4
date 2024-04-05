@@ -1,8 +1,9 @@
+import SectionContainer from "@/components/SectionContainer";
 import { Stack, Typography } from "@mui/material";
 
 function AboutSection() {
   return (
-    <Stack>
+    <SectionContainer id="about-section">
       <Typography variant="body1" color={"text.secondary"}>
         Back in 2012, I decided to try my hand at creating custom Tumblr themes
         and tumbled head first into the rabbit hole of coding and web
@@ -18,7 +19,7 @@ function AboutSection() {
         hanging out with my wife and two cats, or running around Hyrule
         searching for Korok seeds K o r o k s e e d s .
       </Typography>
-    </Stack>
+    </SectionContainer>
   );
 }
 
