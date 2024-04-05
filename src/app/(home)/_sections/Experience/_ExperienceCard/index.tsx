@@ -20,7 +20,8 @@ function ExperienceCard() {
             fontWeight={600}
             gutterBottom
           >
-            I am currently working as a Senior Software Engineer at Klaviyo.
+            I am currently working as a Senior Software Engineer at Vision
+            Dimensions.
           </Typography>
           <Typography variant="body2" color={"text.secondary"}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi

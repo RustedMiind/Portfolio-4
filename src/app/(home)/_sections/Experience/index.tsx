@@ -4,7 +4,9 @@ import ExperienceCard from "./_ExperienceCard";
 
 function ExperienceSection() {
   return (
-    <Stack>
+    <Stack spacing={2}>
+      <ExperienceCard />
+      <ExperienceCard />
       <ExperienceCard />
     </Stack>
   );
