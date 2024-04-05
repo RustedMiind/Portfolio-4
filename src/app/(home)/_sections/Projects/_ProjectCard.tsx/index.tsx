@@ -24,7 +24,15 @@ function ProjectCard() {
             className: "card-structure-media",
           }}
         >
-          <img src="https://picsum.photos/id/237/200/300" alt="project" />
+          <img
+            style={{
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+            }}
+            src="https://picsum.photos/id/237/200/300"
+            alt="project"
+          />
         </AspectRatio>
       }
       mainContent={
