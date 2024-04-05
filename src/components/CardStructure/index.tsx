@@ -1,9 +1,9 @@
-import { Grid } from "@mui/material";
+import { Grid, SxProps } from "@mui/material";
 import HoverableBox from "../HoverableBox";
 
-function CardStructure({ mainContent, mediaContent }: Props) {
+function CardStructure({ mainContent, mediaContent, sx }: Props) {
   return (
-    <HoverableBox sx={{ p: 2 }}>
+    <HoverableBox sx={{ p: 2, ...sx }}>
       <Grid container spacing={2}>
         <Grid item xs={3}>
           {mediaContent}
@@ -19,6 +19,7 @@ function CardStructure({ mainContent, mediaContent }: Props) {
 type Props = {
   mainContent?: React.ReactNode;
   mediaContent?: React.ReactNode;
+  sx?: SxProps;
 };
 
 export type CardStructureProps = Props;
