@@ -26,7 +26,16 @@ export default function RootLayout({
         <ThemeProvider theme={theme}>
           <NotiStackProvider>
             <JotaiProvider>
-              <Stack component={"body"} bgcolor={"background.default"}>
+              <Stack
+                component={"body"}
+                bgcolor={"background.default"}
+                sx={{
+                  ".MuiTableCell-root": {
+                    borderBottom: "1px solid transparent",
+                    borderBottomColor: "background.paper",
+                  },
+                }}
+              >
                 <Stack py={12}>
                   <Container maxWidth="lg">{children}</Container>
                 </Stack>
