@@ -1,6 +1,7 @@
 import MainGrid from "@/components/MainGrid";
-import { Container, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import NavLinks from "./NavLinks";
+import IconsContainer from "./IconsContainer";
 
 export const DRAWER_WIDTH = {
   xs: undefined,
@@ -19,8 +20,8 @@ function Drawer() {
             md: 6,
           },
           height: {
-            xs: "100vw",
-            md: "100vw",
+            xs: "100vh",
+            md: "100vh",
           },
           top: 0,
           py: {
@@ -36,7 +37,7 @@ function Drawer() {
           position: { xs: undefined, md: "fixed" },
         }}
       >
-        <Stack spacing={1}>
+        <Stack spacing={1} height={1}>
           <Typography variant="h3" fontWeight={700}>
             Ali Soliman
           </Typography>
@@ -48,7 +49,10 @@ function Drawer() {
             users with pixel-perfect design, ensuring accessibility and
             engagement at every step.
           </Typography>
-          <NavLinks />
+          <Box pb={{ xs: 4, md: 0 }} flexGrow={{ xs: undefined, md: 1 }}>
+            <NavLinks />
+          </Box>
+          <IconsContainer />
         </Stack>
       </Stack>
     </Container>
