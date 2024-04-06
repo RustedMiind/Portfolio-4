@@ -8,19 +8,19 @@ import ScrollSpyContainer from "./ScrollSpyContainer";
 
 export default function Home() {
   return (
-    <Stack pt={12}>
-      <Container sx={{ position: "relative" }} maxWidth="lg">
-        <Drawer />
-        <Stack pl={DRAWER_WIDTH}>
-          <Stack spacing={12}>
-            <ScrollSpyContainer>
-              <AboutSection />
-              <ExperienceSection />
-              <ProjectsSection />
-            </ScrollSpyContainer>
-          </Stack>
+    // <Container sx={{ position: "relative" }} maxWidth="lg">
+    <>
+      <Drawer />
+      <Stack pl={DRAWER_WIDTH}>
+        <Stack spacing={12}>
+          <ScrollSpyContainer>
+            <AboutSection />
+            <ExperienceSection />
+            <ProjectsSection />
+          </ScrollSpyContainer>
         </Stack>
-      </Container>
-    </Stack>
+      </Stack>
+    </>
+    // </Container>
   );
 }

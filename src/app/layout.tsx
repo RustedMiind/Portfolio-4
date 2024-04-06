@@ -27,7 +27,9 @@ export default function RootLayout({
           <NotiStackProvider>
             <JotaiProvider>
               <Stack component={"body"} bgcolor={"background.default"}>
-                {children}
+                <Stack py={12}>
+                  <Container maxWidth="lg">{children}</Container>
+                </Stack>
                 <div
                   id="mouseEffectContainer"
                   className="mouse-effect-container"
