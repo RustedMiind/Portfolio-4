@@ -18,6 +18,21 @@ function Drawer() {
             xs: undefined,
             md: 6,
           },
+          height: {
+            xs: "100vw",
+            md: "100vw",
+          },
+          top: 0,
+          py: {
+            xs: 0,
+            md: 12,
+          },
+          justifyContent: {
+            xs: "center",
+            md: "start",
+          },
+          mb: { xs: 4, md: 0 },
+          overflowY: "auto",
           position: { xs: undefined, md: "fixed" },
         }}
       >
