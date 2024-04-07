@@ -1,6 +1,8 @@
 import {
+  Grow,
   IconButton,
   IconButtonProps,
+  Slide,
   Stack,
   Tooltip,
   TooltipProps,
@@ -19,6 +21,14 @@ function NavIcon({
     <Tooltip
       arrow
       placement="top"
+      slotProps={{
+        tooltip: {
+          sx: { bgcolor: "background.default" },
+        },
+        arrow: {
+          sx: { color: "background.default" },
+        },
+      }}
       title={
         <Stack>
           <Typography variant="body2">{title}</Typography>
