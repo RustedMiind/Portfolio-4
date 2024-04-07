@@ -57,6 +57,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          verticalAlign: "top",
+        },
+      },
+    },
   },
 });
 
