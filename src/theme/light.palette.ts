@@ -2,24 +2,25 @@ import { PaletteOptions } from "@mui/material";
 import { green } from "@mui/material/colors";
 
 export const LightPalette: PaletteOptions = {
+  mode: "light",
   primary: {
-    main: "rgb(94, 234, 212)",
-    lightest: "#50e1ce33",
+    main: "#FB2E86",
+    lightest: "#FB2E8633",
   },
   secondary: {
-    main: "#FB2E86",
-    lightest: "#FB2E8655",
+    main: "#2F1AC4 ",
+    lightest: "#2F1AC433 ",
   },
   background: {
-    default: "#0f1729",
-    paper: "#161f30",
-    medTransparent: "rgba(30, 41, 59, 0.5)",
+    default: "#FFF",
+    paper: "#FFF",
   },
   success: {
     main: green.A400,
   },
   text: {
-    primary: "rgb(229, 231, 235)",
-    secondary: "#7c8fb0",
+    primary: "#151875",
+    secondary: "#A1ABCC",
+    disabled: "#8A8FB9",
   },
 };

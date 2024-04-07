@@ -5,6 +5,7 @@ import {
   createTheme,
 } from "@mui/material/styles";
 import { LightPalette } from "./light.palette";
+import { DarkPalette } from "./dark.palette";
 
 // Extend the TypeBackground and PaletteColorOptions interfaces
 declare module "@mui/material/styles" {
@@ -18,7 +19,7 @@ declare module "@mui/material/styles" {
 
 // Create the MUI theme
 const theme = createTheme({
-  palette: LightPalette,
+  palette: DarkPalette,
   components: {
     MuiButton: {
       defaultProps: { disableElevation: true },
