@@ -1,8 +1,22 @@
 "use client";
 import { useEffect } from "react";
 import "./mouse-effect.scss";
+import { useTheme } from "@mui/material";
 
 function MouseEffect() {
+  const {
+    palette: { mode },
+  } = useTheme();
+  let gradColor: string;
+  switch (mode) {
+    case "light":
+      gradColor = "rgba(140, 140, 140, ";
+      break;
+    case "dark":
+      gradColor = "rgba(29, 78, 216, ";
+      break;
+  }
+
   useEffect(() => {
     const eventFunction = (e: MouseEvent) => {
       const mouseX = e.clientX;
@@ -25,7 +39,7 @@ function MouseEffect() {
 
       container.style.backgroundImage = `radial-gradient(${
         200 + howFar * 500
-      }px at ${mouseX}px ${mouseY}px, rgba(29, 78, 216, ${
+      }px at ${mouseX}px ${mouseY}px, ${gradColor} ${
         0.1 + howFar * 0.35
       }), transparent 80%)`;
     };
@@ -34,7 +48,7 @@ function MouseEffect() {
     return () => {
       window.removeEventListener("mousemove", eventFunction);
     };
-  }, []);
+  }, [mode]);
 
   return "";
 }
