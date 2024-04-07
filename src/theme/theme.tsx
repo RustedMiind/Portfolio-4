@@ -50,6 +50,13 @@ const theme = createTheme({
         color: "text.primary",
       },
     },
+    MuiTable: {
+      styleOverrides: {
+        root: {
+          "table-layout": "fixed",
+        },
+      },
+    },
   },
 });
 
