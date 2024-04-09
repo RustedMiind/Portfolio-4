@@ -23,6 +23,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
+    "react-share-lite": "^1.1.0",
     "react-ui-scrollspy": "^2.3.0",
     "sass": "^1.72.0",
     "zod": "^3.22.4"

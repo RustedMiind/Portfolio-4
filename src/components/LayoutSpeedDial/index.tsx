@@ -21,11 +21,16 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CloseIcon from "@mui/icons-material/Close";
 import ContactDialog from "./ContactDialog";
+import ShareDrawer from "./ShareDrawer";
 
 function LayoutSpeedDial() {
   const [contactOpen, setContactOpen] = React.useState(false);
   const handleOpenContact = () => setContactOpen(true);
   const handleCloseContact = () => setContactOpen(false);
+
+  const [shareOpen, setShareOpen] = React.useState(false);
+  const handleOpenShare = () => setShareOpen(true);
+  const handleCloseShare = () => setShareOpen(false);
 
   const actions = React.useMemo<
     (SpeedDialActionProps & { tooltipTitle: string })[]
@@ -37,7 +42,7 @@ function LayoutSpeedDial() {
         onClick: handleOpenContact,
       },
       { icon: <AccountBoxIcon />, tooltipTitle: "View Resume" },
-      { icon: <ShareIcon />, tooltipTitle: "Share" },
+      { icon: <ShareIcon />, tooltipTitle: "Share", onClick: handleOpenShare },
       { icon: <TranslateIcon />, tooltipTitle: "Translate to Arabic" },
       { icon: <DarkModeIcon />, tooltipTitle: "Dark Mode" },
     ],
@@ -47,6 +52,11 @@ function LayoutSpeedDial() {
   return (
     <>
       <ContactDialog open={contactOpen} onClose={handleCloseContact} />
+      <ShareDrawer
+        open={shareOpen}
+        onClose={handleCloseShare}
+        onOpen={handleOpenShare}
+      />
       <SpeedDial
         ariaLabel="SpeedDial basic example"
         sx={{
