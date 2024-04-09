@@ -35,6 +35,7 @@ export default function RootLayout({
                     borderBottom: "1px solid transparent",
                     borderBottomColor: "background.paper",
                   },
+                  transition: "background-color 500ms ease-out",
                 }}
               >
                 <Stack py={12}>
