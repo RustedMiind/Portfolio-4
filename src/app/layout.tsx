@@ -3,7 +3,7 @@ import "./globals.scss";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import theme from "@/theme/theme";
+import { CustomThemeProvider } from "@/theme/theme";
 import { Provider as JotaiProvider } from "jotai";
 import { SnackbarProvider } from "notistack";
 import { Grow, Stack, ThemeProvider, Container } from "@mui/material";
@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AppRouterCacheProvider>
-        <ThemeProvider theme={theme}>
+        <CustomThemeProvider>
           <NotiStackProvider>
             <JotaiProvider>
               <Stack
@@ -49,7 +49,7 @@ export default function RootLayout({
               </Stack>
             </JotaiProvider>
           </NotiStackProvider>
-        </ThemeProvider>
+        </CustomThemeProvider>
       </AppRouterCacheProvider>
     </html>
   );
