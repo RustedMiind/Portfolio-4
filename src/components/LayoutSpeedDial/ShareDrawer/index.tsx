@@ -36,7 +36,10 @@ function ShareDrawer({ ...props }: Props) {
           <LinkedinShare {...shareDetails} />
           <WhatsappShare {...shareDetails} />
           <RedditShare {...shareDetails} />
-          <TwitterShare {...shareDetails} hashtags={hashtags.split(" ")} />
+          <TwitterShare
+            {...shareDetails}
+            hashtags={hashtags.split("#").slice(1)}
+          />
           <TumblrShare {...shareDetails} caption={shareDetails.title} />
           <TelegramShare {...shareDetails} />
         </Stack>
