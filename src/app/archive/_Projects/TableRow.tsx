@@ -39,10 +39,15 @@ function TableRow() {
     <MuiTableRow>
       <SecondaryTableCell>2023</SecondaryTableCell>
       <MainTableCell tableCellProps={{ colSpan: 3 }}>Hello There</MainTableCell>
-      <SecondaryTableCell tableCellProps={{ colSpan: 2 }}>
+      <SecondaryTableCell
+        tableCellProps={{
+          colSpan: 2,
+          sx: { display: { xs: "none", lg: "table-cell" } },
+        }}
+      >
         Vision Dimensions
       </SecondaryTableCell>
-      <TableCell colSpan={4}>
+      <TableCell colSpan={4} sx={{ display: { xs: "none", sm: "table-cell" } }}>
         <Stack direction="row" gap={1} flexWrap={"wrap"}>
           <CustomChip label="React" />
           <CustomChip label="Next" />
@@ -53,7 +58,12 @@ function TableRow() {
           <CustomChip label="Laravel" />
         </Stack>
       </TableCell>
-      <SecondaryTableCell tableCellProps={{ colSpan: 3 }}>
+      <SecondaryTableCell
+        tableCellProps={{
+          colSpan: 3,
+          sx: { display: { xs: "none", md: "table-cell" } },
+        }}
+      >
         2023
       </SecondaryTableCell>
     </MuiTableRow>
