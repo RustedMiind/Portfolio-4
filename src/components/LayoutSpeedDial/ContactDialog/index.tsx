@@ -10,6 +10,7 @@ import {
   Box,
   Grid,
   GridProps,
+  Stack,
   TextField,
   TextFieldProps,
   Typography,
@@ -64,14 +65,21 @@ function ContactDialog(props: DialogProps & { onClose: () => void }) {
   const submit = handleSubmit(console.log);
 
   return (
-    <Dialog fullWidth maxWidth="md" fullScreen={fullScreen} {...props}>
+    <Dialog
+      fullWidth
+      maxWidth="md"
+      fullScreen={fullScreen}
+      {...props}
+      component={"form"}
+      onSubmit={submit}
+    >
       <DialogTitle>
         <Typography variant="h6" fontWeight={700}>
           Contact With Ali Soliman
         </Typography>
       </DialogTitle>
       <DialogContent>
-        <Box py={2} component={"form"} onSubmit={submit} noValidate>
+        <Box py={2}>
           <Grid container spacing={2}>
             <InputItem
               label="Your Name"
@@ -103,18 +111,31 @@ function ContactDialog(props: DialogProps & { onClose: () => void }) {
               rows={4}
               gridProps={{ md: 12 }}
             />
-            <Grid item xs={12}>
-              <Button type="submit" fullWidth variant="contained" size="large">
-                Submit
-              </Button>
-            </Grid>
+            <Grid item xs={12}></Grid>
           </Grid>
         </Box>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={props.onClose} color="primary">
-          Cancel
-        </Button>
+      <DialogActions sx={{ flexDirection: "column" }}>
+        <Stack width={1} spacing={1}>
+          <Button type="submit" fullWidth variant="contained" size="large">
+            Send
+          </Button>
+          <Button
+            onClick={props.onClose}
+            fullWidth
+            color="primary"
+            variant="outlined"
+            type="button"
+            sx={{
+              display: {
+                xs: "block",
+                lg: "none",
+              },
+            }}
+          >
+            Cancel
+          </Button>
+        </Stack>
       </DialogActions>
     </Dialog>
   );
