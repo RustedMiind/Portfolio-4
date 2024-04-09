@@ -24,6 +24,29 @@ declare module "@mui/material/styles" {
   }
 }
 
+let systemMode: ThemeMode = ThemeMode.LIGHT;
+if (
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches
+) {
+  systemMode = ThemeMode.DARK;
+}
+
+const localStorageModeString = localStorage.getItem("theme");
+let localStorageMode: ThemeMode | undefined;
+switch (localStorageModeString) {
+  case ThemeMode.DARK:
+    localStorageMode = ThemeMode.DARK;
+    break;
+
+  case ThemeMode.LIGHT:
+    localStorageMode = ThemeMode.LIGHT;
+    break;
+
+  default:
+    break;
+}
+
 // Create the MUI theme
 
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
@@ -32,38 +55,42 @@ export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
     if (theme) setMode(theme);
     else setMode(mode === ThemeMode.DARK ? ThemeMode.LIGHT : ThemeMode.DARK);
   };
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: mode === ThemeMode.DARK ? DarkPalette : LightPalette,
-        components: {
-          MuiButton: {
-            defaultProps: { disableElevation: true },
+  const theme = useMemo(() => {
+    let theme: ThemeMode;
+    if (localStorageMode) {
+      theme = localStorageMode;
+    } else {
+      theme = systemMode;
+    }
+    return createTheme({
+      palette: theme === ThemeMode.DARK ? DarkPalette : LightPalette,
+      components: {
+        MuiButton: {
+          defaultProps: { disableElevation: true },
+        },
+        // Must be removed
+        MuiTypography: {
+          defaultProps: {
+            color: "text.primary",
           },
-          // Must be removed
-          MuiTypography: {
-            defaultProps: {
-              color: "text.primary",
-            },
-          },
-          MuiTable: {
-            styleOverrides: {
-              root: {
-                "table-layout": "fixed",
-              },
-            },
-          },
-          MuiTableCell: {
-            styleOverrides: {
-              root: {
-                verticalAlign: "top",
-              },
+        },
+        MuiTable: {
+          styleOverrides: {
+            root: {
+              "table-layout": "fixed",
             },
           },
         },
-      }),
-    [mode]
-  );
+        MuiTableCell: {
+          styleOverrides: {
+            root: {
+              verticalAlign: "top",
+            },
+          },
+        },
+      },
+    });
+  }, [mode]);
 
   return (
     <CustomThemeContext.Provider value={{ mode, toggleMode }}>
