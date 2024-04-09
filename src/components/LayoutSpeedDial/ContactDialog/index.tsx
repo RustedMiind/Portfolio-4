@@ -17,7 +17,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const GridItem = (props: GridProps) => <Grid item xs={12} md={6} {...props} />;
@@ -59,8 +59,13 @@ function ContactDialog(props: DialogProps & { onClose: () => void }) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormType>({ resolver: zodResolver(formSchema) });
+
+  useEffect(() => {
+    reset();
+  }, [props.open]);
 
   const submit = handleSubmit(console.log);
 
