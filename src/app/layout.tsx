@@ -9,6 +9,7 @@ import { SnackbarProvider } from "notistack";
 import { Grow, Stack, ThemeProvider, Container } from "@mui/material";
 import NotiStackProvider from "./SnackbarProvider";
 import MouseEffect from "./_MouseEffect";
+import LayoutSpeedDial from "@/components/LayoutSpeedDial";
 
 export const metadata: Metadata = {
   title: "Ali Soliman",
@@ -44,6 +45,7 @@ export default function RootLayout({
                   className="mouse-effect-container"
                 ></div>
                 <MouseEffect />
+                <LayoutSpeedDial />
               </Stack>
             </JotaiProvider>
           </NotiStackProvider>

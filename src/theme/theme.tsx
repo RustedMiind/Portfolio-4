@@ -19,7 +19,7 @@ declare module "@mui/material/styles" {
 
 // Create the MUI theme
 const theme = createTheme({
-  palette: DarkPalette,
+  palette: LightPalette,
   components: {
     MuiButton: {
       defaultProps: { disableElevation: true },
