@@ -22,6 +22,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import CloseIcon from "@mui/icons-material/Close";
 import ContactDialog from "./ContactDialog";
 import ShareDrawer from "./ShareDrawer";
+import { CustomThemeContext } from "@/theme/CustomThemeContext";
+import { ThemeMode } from "@/theme/ThemeMode.enum";
 
 function LayoutSpeedDial() {
   const [contactOpen, setContactOpen] = React.useState(false);
@@ -31,7 +33,7 @@ function LayoutSpeedDial() {
   const [shareOpen, setShareOpen] = React.useState(false);
   const handleOpenShare = () => setShareOpen(true);
   const handleCloseShare = () => setShareOpen(false);
-
+  const { mode, toggleMode } = React.useContext(CustomThemeContext);
   const actions = React.useMemo<
     (SpeedDialActionProps & { tooltipTitle: string })[]
   >(
@@ -44,9 +46,19 @@ function LayoutSpeedDial() {
       { icon: <AccountBoxIcon />, tooltipTitle: "View Resume" },
       { icon: <ShareIcon />, tooltipTitle: "Share", onClick: handleOpenShare },
       { icon: <TranslateIcon />, tooltipTitle: "Translate to Arabic" },
-      { icon: <DarkModeIcon />, tooltipTitle: "Dark Mode" },
+      mode === ThemeMode.DARK
+        ? {
+            icon: <LightModeIcon />,
+            tooltipTitle: "Switch to Light Mode",
+            onClick: () => toggleMode(ThemeMode.LIGHT),
+          }
+        : {
+            icon: <DarkModeIcon />,
+            tooltipTitle: "Switch to Dark Mode",
+            onClick: () => toggleMode(ThemeMode.DARK),
+          },
     ],
-    []
+    [mode]
   );
 
   return (
