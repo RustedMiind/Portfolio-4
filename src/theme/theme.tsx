@@ -56,7 +56,11 @@ export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
   } else {
     defaultTheme = systemMode;
   }
-  const [mode, setMode] = useState<ThemeMode>(defaultTheme);
+  const [mode, setModeState] = useState<ThemeMode>(defaultTheme);
+  const setMode = (mode: ThemeMode) => {
+    localStorage.setItem("theme", mode);
+    setModeState(mode);
+  };
   const toggleMode: CustomThemeContextType["toggleMode"] = (theme) => {
     if (theme) setMode(theme);
     else setMode(mode === ThemeMode.DARK ? ThemeMode.LIGHT : ThemeMode.DARK);
