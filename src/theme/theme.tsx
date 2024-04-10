@@ -50,20 +50,20 @@ switch (localStorageModeString) {
 // Create the MUI theme
 
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
-  const [mode, setMode] = useState<ThemeMode>(ThemeMode.DARK);
+  let defaultTheme: ThemeMode;
+  if (localStorageMode) {
+    defaultTheme = localStorageMode;
+  } else {
+    defaultTheme = systemMode;
+  }
+  const [mode, setMode] = useState<ThemeMode>(defaultTheme);
   const toggleMode: CustomThemeContextType["toggleMode"] = (theme) => {
     if (theme) setMode(theme);
     else setMode(mode === ThemeMode.DARK ? ThemeMode.LIGHT : ThemeMode.DARK);
   };
   const theme = useMemo(() => {
-    let theme: ThemeMode;
-    if (localStorageMode) {
-      theme = localStorageMode;
-    } else {
-      theme = systemMode;
-    }
     return createTheme({
-      palette: theme === ThemeMode.DARK ? DarkPalette : LightPalette,
+      palette: mode === ThemeMode.DARK ? DarkPalette : LightPalette,
       components: {
         MuiButton: {
           defaultProps: { disableElevation: true },
