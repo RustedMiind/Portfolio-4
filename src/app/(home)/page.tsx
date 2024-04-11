@@ -5,22 +5,25 @@ import AboutSection from "./_sections/About";
 import ExperienceSection from "./_sections/Experience";
 import ProjectsSection from "./_sections/Projects";
 import ScrollSpyContainer from "./ScrollSpyContainer";
+import { getExperiences } from "@/api/expoerience";
+import { getProjects } from "@/api/project";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
+  const experiences = await getExperiences();
+
   return (
-    // <Container sx={{ position: "relative" }} maxWidth="lg">
     <>
       <Drawer />
       <Stack pl={DRAWER_WIDTH}>
         <Stack spacing={12}>
           <ScrollSpyContainer>
             <AboutSection />
-            <ExperienceSection />
-            <ProjectsSection />
+            <ExperienceSection experiences={experiences} />
+            <ProjectsSection projects={projects} />
           </ScrollSpyContainer>
         </Stack>
       </Stack>
     </>
-    // </Container>
   );
 }

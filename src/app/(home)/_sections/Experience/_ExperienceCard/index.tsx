@@ -1,14 +1,20 @@
 import CardStructure from "@/components/CardStructure";
 import CustomChip from "@/components/CustomChip";
+import { Experience } from "@/types/Experience";
 import { Chip, Stack, Typography } from "@mui/material";
 
-function ExperienceCard() {
+function ExperienceCard({ experience }: Props) {
+  const startYear = new Date(experience.start_date).getFullYear();
+  const endYear = experience.end_date
+    ? new Date(experience.end_date).getFullYear()
+    : null;
+
   return (
     <CardStructure
       mediaContent={
         <Stack>
           <Typography variant="body2" color={"text.secondary"}>
-            2024 - Present
+            {startYear} - {endYear || "Present"}
           </Typography>
         </Stack>
       }
@@ -19,29 +25,24 @@ function ExperienceCard() {
             className="text-color-effect"
             fontWeight={600}
           >
-            I am currently working as a Senior Software Engineer at Vision
-            Dimensions.
+            {experience.title}
           </Typography>
           <Typography variant="body2" color={"text.secondary"}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-            sapiente ipsum eveniet eligendi praesentium reprehenderit sequi
-            atque ullam, incidunt corporis? Corporis doloremque fuga sapiente
-            optio ullam pariatur adipisci mollitia. Consectetur itaque hic
-            doloribus in neque molestias reiciendis eaque similique accusamus!
+            {experience.description}
           </Typography>
           <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-            <CustomChip color="primary" label="JavaScript" />
-            <CustomChip color="primary" label="TypeScript" />
-            <CustomChip color="primary" label="React" />
-            <CustomChip color="primary" label="Next" />
-            <CustomChip color="primary" label="MUI" />
-            <CustomChip color="primary" label="Nest JS" />
-            <CustomChip color="primary" label="SQL" />
+            {experience.tools?.map((tool) => (
+              <CustomChip key={tool.id} label={tool.name} />
+            ))}
           </Stack>
         </Stack>
       }
     />
   );
 }
+
+type Props = {
+  experience: Experience;
+};
 
 export default ExperienceCard;

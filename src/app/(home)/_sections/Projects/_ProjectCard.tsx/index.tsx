@@ -1,11 +1,12 @@
 import AspectRatio from "@/components/AspectRatio";
 import CardStructure from "@/components/CardStructure";
 import CustomChip from "@/components/CustomChip";
+import { Project } from "@/types/Project";
 import { Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { grey } from "@mui/material/colors";
 
-function ProjectCard() {
+function ProjectCard({ project }: Props) {
   return (
     <CardStructure
       sx={{
@@ -30,7 +31,7 @@ function ProjectCard() {
               width: "100%",
               objectFit: "cover",
             }}
-            src="https://picsum.photos/id/237/200/300"
+            src={project.image}
             alt="project"
           />
         </AspectRatio>
@@ -42,22 +43,24 @@ function ProjectCard() {
             className="text-color-effect"
             fontWeight={600}
           >
-            ERP Dashboard
+            {project.name}
           </Typography>
           <Typography variant="body2" color={"text.secondary"}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-            sapiente ipsum eveniet eligendi praesentium reprehenderit sequi
-            atque ullam, incidunt corporis? Corporis doloremque fuga sapiente
+            {project.description}
           </Typography>
           <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-            <CustomChip color="primary" label="TypeScript" />
-            <CustomChip color="primary" label="React" />
-            <CustomChip color="primary" label="MUI" />
+            {project.tools?.map((tool) => (
+              <CustomChip key={tool.id} label={tool.name} />
+            ))}
           </Stack>
         </Stack>
       }
     />
   );
 }
+
+type Props = {
+  project: Project;
+};
 
 export default ProjectCard;
