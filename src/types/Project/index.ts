@@ -8,5 +8,6 @@ export interface Project {
   link: string;
   experienceId: string | null;
   experience?: Experience;
+  description: string;
   tools?: Tool[];
 }
