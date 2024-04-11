@@ -6,8 +6,8 @@ export const projectSchema = z.object({
   id: z.string(),
   name: z.string(),
   link: z.string(),
-  image: z.string().optional(),
-  experience: experienceSchema,
+  image: z.string().nullable(),
+  experienceId: z.string().nullable(),
 });
 
 export type Project = z.infer<typeof projectSchema>;

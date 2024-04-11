@@ -24,33 +24,41 @@ declare module "@mui/material/styles" {
   }
 }
 
-let systemMode: ThemeMode = ThemeMode.LIGHT;
-if (
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches
-) {
-  systemMode = ThemeMode.DARK;
+function getSystemMode() {
+  let systemMode: ThemeMode = ThemeMode.LIGHT;
+  if (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    systemMode = ThemeMode.DARK;
+  }
+  return systemMode;
 }
 
-const localStorageModeString = localStorage.getItem("theme");
-let localStorageMode: ThemeMode | undefined;
-switch (localStorageModeString) {
-  case ThemeMode.DARK:
-    localStorageMode = ThemeMode.DARK;
-    break;
+function getLocalStorageMode() {
+  const localStorageModeString = localStorage.getItem("theme");
+  let localStorageMode: ThemeMode | undefined;
+  switch (localStorageModeString) {
+    case ThemeMode.DARK:
+      localStorageMode = ThemeMode.DARK;
+      break;
 
-  case ThemeMode.LIGHT:
-    localStorageMode = ThemeMode.LIGHT;
-    break;
+    case ThemeMode.LIGHT:
+      localStorageMode = ThemeMode.LIGHT;
+      break;
 
-  default:
-    break;
+    default:
+      break;
+  }
+  return localStorageMode;
 }
 
 // Create the MUI theme
 
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
   let defaultTheme: ThemeMode;
+  const systemMode = getSystemMode();
+  const localStorageMode = getLocalStorageMode();
   if (localStorageMode) {
     defaultTheme = localStorageMode;
   } else {
