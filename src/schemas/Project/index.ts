@@ -7,7 +7,6 @@ export const projectSchema = z.object({
   name: z.string(),
   link: z.string(),
   image: z.string().optional(),
-  tools: z.array(toolSchema).optional(),
   experience: experienceSchema,
 });
 

@@ -8,7 +8,6 @@ export const experienceSchema = z.object({
   description: z.string(),
   start_at: z.string(),
   end_date: z.string().optional(),
-  tools: z.array(toolSchema).optional(),
   org_name: z.string(),
 });
 
