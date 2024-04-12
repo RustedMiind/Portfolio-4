@@ -1,6 +1,7 @@
 import AspectRatio from "@/components/AspectRatio";
 import CardStructure from "@/components/CardStructure";
 import CustomChip from "@/components/CustomChip";
+import ToolsChipsContainer from "@/components/ToolsChipsContainer";
 import { Project } from "@/types/Project";
 import { Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -49,17 +50,7 @@ function ProjectCard({ project }: Props) {
           <Typography variant="body2" color={"text.secondary"}>
             {project.description}
           </Typography>
-          <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-            {project.tools?.map((tool) => (
-              <CustomChip
-                key={tool.id}
-                label={tool.name}
-                component={Link}
-                href={tool.link}
-                sx={{ cursor: "pointer" }}
-              />
-            ))}
-          </Stack>
+          {project.tools && <ToolsChipsContainer tools={project.tools} />}
         </Stack>
       }
     />

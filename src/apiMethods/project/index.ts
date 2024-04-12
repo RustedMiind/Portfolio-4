@@ -3,8 +3,10 @@ import { Project } from "@/types/Project";
 
 export const getProjects = async () => {
   const response = await fetch(api("project"));
-  const data = (await response.json()) as Project[];
-  return data;
+  if (response.ok) {
+    const data = (await response.json()) as Project[];
+    return data;
+  } else return undefined;
 };
 
 export const getProject = async (projectId: string) => {
