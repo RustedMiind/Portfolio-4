@@ -5,6 +5,7 @@ import { Project } from "@/types/Project";
 import { Stack, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { grey } from "@mui/material/colors";
+import Link from "next/link";
 
 function ProjectCard({ project }: Props) {
   return (
@@ -50,7 +51,13 @@ function ProjectCard({ project }: Props) {
           </Typography>
           <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
             {project.tools?.map((tool) => (
-              <CustomChip key={tool.id} label={tool.name} />
+              <CustomChip
+                key={tool.id}
+                label={tool.name}
+                component={Link}
+                href={tool.link}
+                sx={{ cursor: "pointer" }}
+              />
             ))}
           </Stack>
         </Stack>
