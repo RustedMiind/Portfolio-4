@@ -1,3 +1,5 @@
+"use client";
+
 import { Stack } from "@mui/material";
 import NavIcon from "./NavIcon";
 
@@ -7,44 +9,44 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { useAtomValue } from "jotai";
+import { variablesAtom } from "@/jotai/atoms/Variables";
 
 function IconsContainer() {
+  const variables = useAtomValue(variablesAtom);
+
   return (
     <Stack direction={"row"} spacing={1}>
       <NavIcon
         title="LinkedIn"
         subTitle="Ali Soliman"
-        url="https://www.linkedin.com/in/rustedmind"
+        url={variables?.linked_in}
       >
         <LinkedInIcon />
       </NavIcon>
-      <NavIcon
-        title="Github"
-        subTitle="RustedMiind"
-        url="https://github.com/RustedMiind"
-      >
+      <NavIcon title="Github" subTitle="RustedMiind" url={variables?.github}>
         <GitHubIcon />
       </NavIcon>
       <NavIcon
         title="Email"
-        subTitle="alisolimanworks@gmail.com"
-        url="mailto:alisolimanworks@gmail.com"
+        subTitle={variables?.email}
+        url={`mailto:${variables?.email}`}
         inSamePage
       >
         <EmailIcon />
       </NavIcon>
       <NavIcon
         title="Phone Number"
-        subTitle="+20 109 557 4449"
-        url="tel:+201095574449"
+        subTitle={variables?.phone}
+        url={`tel:${variables?.phone?.trim()}`}
         inSamePage
       >
         <PhoneIcon />
       </NavIcon>
       <NavIcon
         title="WhatsApp"
-        subTitle="+20 109 557 4449"
-        url="https://wa.me/+201095574449"
+        subTitle={variables?.whats_app}
+        url={`https://wa.me/${variables?.whats_app?.trim()}`}
       >
         <WhatsAppIcon />
       </NavIcon>

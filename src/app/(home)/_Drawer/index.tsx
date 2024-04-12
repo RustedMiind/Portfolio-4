@@ -2,6 +2,7 @@ import MainGrid from "@/components/MainGrid";
 import { Box, Container, Stack, Typography } from "@mui/material";
 import NavLinks from "./NavLinks";
 import IconsContainer from "./IconsContainer";
+import MyDetails from "./MyDetails";
 
 export const DRAWER_WIDTH = {
   xs: undefined,
@@ -38,17 +39,7 @@ function Drawer() {
         }}
       >
         <Stack spacing={1} height={1}>
-          <Typography variant="h3" fontWeight={700}>
-            Ali Soliman
-          </Typography>
-          <Typography variant="h6" fontWeight={700}>
-            Web Development Engineer
-          </Typography>
-          <Typography variant="body1" color={"text.secondary"}>
-            I specialize in crafting flawless digital experiences that captivate
-            users with pixel-perfect design, ensuring accessibility and
-            engagement at every step.
-          </Typography>
+          <MyDetails />
           <Box pb={{ xs: 4, md: 0 }} flexGrow={{ xs: undefined, md: 1 }}>
             <NavLinks />
           </Box>

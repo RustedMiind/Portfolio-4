@@ -55,7 +55,7 @@ function NavIcon({
 
 type Props = {
   title: string;
-  url: string;
+  url?: string;
   subTitle?: string;
   toolTipProps?: TooltipProps;
   inSamePage?: boolean;

@@ -10,23 +10,27 @@ import NotiStackProvider from "./SnackbarProvider";
 import MouseEffect from "./_MouseEffect";
 import LayoutSpeedDial from "@/components/LayoutSpeedDial";
 import CustomThemeProvider from "@/theme/theme";
+import { getVariables } from "@/api/variables";
+import HydrateAtoms from "@/jotai/HydrateAtoms";
 
 export const metadata: Metadata = {
   title: "Ali Soliman",
   description: "Portfolio of Ali Soliman, a full stack developer",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const variables = await getVariables();
+
   return (
     <html lang="en">
       <AppRouterCacheProvider>
         <CustomThemeProvider>
           <NotiStackProvider>
-            <JotaiProvider>
+            <HydrateAtoms variablesFromServer={variables}>
               <Stack
                 component={"body"}
                 bgcolor={"background.default"}
@@ -48,7 +52,7 @@ export default function RootLayout({
                 <MouseEffect />
                 <LayoutSpeedDial />
               </Stack>
-            </JotaiProvider>
+            </HydrateAtoms>
           </NotiStackProvider>
         </CustomThemeProvider>
       </AppRouterCacheProvider>
