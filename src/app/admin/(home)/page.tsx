@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 
 function AdminHomePage() {
-  return <Stack>Hello Nigga</Stack>;
+  return <Stack></Stack>;
 }
 
 export default AdminHomePage;
