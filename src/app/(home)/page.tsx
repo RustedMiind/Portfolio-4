@@ -5,8 +5,8 @@ import AboutSection from "./_sections/About";
 import ExperienceSection from "./_sections/Experience";
 import ProjectsSection from "./_sections/Projects";
 import ScrollSpyContainer from "./ScrollSpyContainer";
-import { getExperiences } from "@/api/expoerience";
-import { getProjects } from "@/api/project";
+import { getExperiences } from "@/apiMethods/expoerience";
+import { getProjects } from "@/apiMethods/project";
 
 export default async function Home() {
   const projects = await getProjects();

@@ -10,8 +10,8 @@ import NotiStackProvider from "./SnackbarProvider";
 import MouseEffect from "./_MouseEffect";
 import LayoutSpeedDial from "@/components/LayoutSpeedDial";
 import CustomThemeProvider from "@/theme/theme";
-import { getVariables } from "@/api/variables";
 import HydrateAtoms from "@/jotai/HydrateAtoms";
+import { getVariables } from "@/apiMethods/variables";
 
 export const metadata: Metadata = {
   title: "Ali Soliman",
