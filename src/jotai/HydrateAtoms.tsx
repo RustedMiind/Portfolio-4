@@ -2,16 +2,23 @@
 import { useHydrateAtoms } from "jotai/utils";
 import { Variables } from "@/types/Variables";
 import { variablesAtom } from "./atoms/Variables";
+import { PrimitiveAtom } from "jotai";
 
-function HydrateAtoms({
-  variablesFromServer,
-  children,
-}: {
-  variablesFromServer: Variables | undefined;
-  children: React.ReactNode;
-}) {
-  useHydrateAtoms([[variablesAtom, variablesFromServer]]);
-  return children;
+function withHydrateAtom<T>({ atom }: Props<T>) {
+  return function ({
+    value,
+    children,
+  }: {
+    value: T;
+    children: React.ReactNode;
+  }) {
+    useHydrateAtoms([[atom, value]]);
+    return children;
+  };
 }
 
-export default HydrateAtoms;
+type Props<T> = {
+  atom: PrimitiveAtom<T>;
+};
+
+export default withHydrateAtom;

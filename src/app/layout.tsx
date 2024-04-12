@@ -12,6 +12,9 @@ import LayoutSpeedDial from "@/components/LayoutSpeedDial";
 import CustomThemeProvider from "@/theme/theme";
 import HydrateAtoms from "@/jotai/HydrateAtoms";
 import { getVariables } from "@/apiMethods/variables";
+import withHydrateAtom from "@/jotai/HydrateAtoms";
+import { variablesAtom } from "@/jotai/atoms/Variables";
+import { HydrateVariablesAtom } from "./_HydrateVariablesAtom";
 
 export const metadata: Metadata = {
   title: "Ali Soliman",
@@ -30,7 +33,7 @@ export default async function RootLayout({
       <AppRouterCacheProvider>
         <CustomThemeProvider>
           <NotiStackProvider>
-            <HydrateAtoms variablesFromServer={variables}>
+            <HydrateVariablesAtom value={variables}>
               <Stack
                 component={"body"}
                 bgcolor={"background.default"}
@@ -52,7 +55,7 @@ export default async function RootLayout({
                 <MouseEffect />
                 <LayoutSpeedDial />
               </Stack>
-            </HydrateAtoms>
+            </HydrateVariablesAtom>
           </NotiStackProvider>
         </CustomThemeProvider>
       </AppRouterCacheProvider>
