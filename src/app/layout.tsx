@@ -9,7 +9,7 @@ import { Grow, Stack, ThemeProvider, Container } from "@mui/material";
 import NotiStackProvider from "./SnackbarProvider";
 import MouseEffect from "./_MouseEffect";
 import LayoutSpeedDial from "@/components/LayoutSpeedDial";
-import { CustomThemeProvider } from "@/theme/theme";
+import CustomThemeProvider from "@/theme/theme";
 
 export const metadata: Metadata = {
   title: "Ali Soliman",

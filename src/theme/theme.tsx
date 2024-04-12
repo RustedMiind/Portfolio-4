@@ -7,12 +7,14 @@ import {
 } from "@mui/material/styles";
 import { LightPalette } from "./light.palette";
 import { DarkPalette } from "./dark.palette";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ThemeMode } from "./ThemeMode.enum";
 import {
   CustomThemeContext,
   CustomThemeContextType,
 } from "./CustomThemeContext";
+import { getLocalStorageMode } from "./localStorageMode";
+import { getSystemMode } from "./systemMode";
 
 // Extend the TypeBackground and PaletteColorOptions interfaces
 declare module "@mui/material/styles" {
@@ -24,39 +26,12 @@ declare module "@mui/material/styles" {
   }
 }
 
-let systemMode: ThemeMode = ThemeMode.LIGHT;
-if (
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches
-) {
-  systemMode = ThemeMode.DARK;
-}
-
-const localStorageModeString = localStorage.getItem("theme");
-let localStorageMode: ThemeMode | undefined;
-switch (localStorageModeString) {
-  case ThemeMode.DARK:
-    localStorageMode = ThemeMode.DARK;
-    break;
-
-  case ThemeMode.LIGHT:
-    localStorageMode = ThemeMode.LIGHT;
-    break;
-
-  default:
-    break;
-}
-
 // Create the MUI theme
 
-export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
-  let defaultTheme: ThemeMode;
-  if (localStorageMode) {
-    defaultTheme = localStorageMode;
-  } else {
-    defaultTheme = systemMode;
-  }
-  const [mode, setModeState] = useState<ThemeMode>(defaultTheme);
+export default function CustomThemeProvider({
+  children,
+}: CustomThemeProviderProps) {
+  const [mode, setModeState] = useState<ThemeMode>(ThemeMode.DARK);
   const setMode = (mode: ThemeMode) => {
     localStorage.setItem("theme", mode);
     setModeState(mode);
@@ -65,6 +40,19 @@ export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
     if (theme) setMode(theme);
     else setMode(mode === ThemeMode.DARK ? ThemeMode.LIGHT : ThemeMode.DARK);
   };
+
+  useEffect(() => {
+    let defaultTheme: ThemeMode;
+    const localStorageMode = getLocalStorageMode();
+    const systemMode = getSystemMode();
+    if (localStorageMode) {
+      defaultTheme = localStorageMode;
+    } else {
+      defaultTheme = systemMode;
+    }
+    setModeState(defaultTheme);
+  }, []);
+
   const theme = useMemo(() => {
     return createTheme({
       palette: mode === ThemeMode.DARK ? DarkPalette : LightPalette,
