@@ -1,6 +1,9 @@
 import { Chip, ChipProps } from "@mui/material";
+import { ElementType } from "react";
 
-function CustomChip(props: ChipProps) {
+function CustomChip<T extends React.ElementType>(
+  props: ChipProps<T, { component?: T }>
+) {
   const color = props.color || "primary";
 
   return (
