@@ -23,7 +23,7 @@ async function ProjectsHomePage() {
         <Box>
           <Button
             component={Link}
-            href="admin/project/create"
+            href="/admin/project/create"
             startIcon={<AddIcon />}
             variant="contained"
           >
