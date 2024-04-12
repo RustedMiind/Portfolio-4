@@ -3,7 +3,7 @@ import "./globals.scss";
 import { Inter } from "next/font/google";
 import "./globals.scss";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import { Provider as JotaiProvider } from "jotai";
+import { Provider as JotaiProvider, Provider } from "jotai";
 import { SnackbarProvider } from "notistack";
 import { Grow, Stack, ThemeProvider, Container } from "@mui/material";
 import NotiStackProvider from "./SnackbarProvider";
@@ -33,29 +33,31 @@ export default async function RootLayout({
       <AppRouterCacheProvider>
         <CustomThemeProvider>
           <NotiStackProvider>
-            <HydrateVariablesAtom value={variables}>
-              <Stack
-                component={"body"}
-                bgcolor={"background.default"}
-                sx={{
-                  ".MuiTableCell-root": {
-                    borderBottom: "1px solid transparent",
-                    borderBottomColor: "background.paper",
-                  },
-                  transition: "background-color 500ms ease-out",
-                }}
-              >
-                <Stack py={12}>
-                  <Container maxWidth="lg">{children}</Container>
+            <Provider>
+              <HydrateVariablesAtom value={variables}>
+                <Stack
+                  component={"body"}
+                  bgcolor={"background.default"}
+                  sx={{
+                    ".MuiTableCell-root": {
+                      borderBottom: "1px solid transparent",
+                      borderBottomColor: "background.paper",
+                    },
+                    transition: "background-color 500ms ease-out",
+                  }}
+                >
+                  <Stack py={12}>
+                    <Container maxWidth="lg">{children}</Container>
+                  </Stack>
+                  <div
+                    id="mouseEffectContainer"
+                    className="mouse-effect-container"
+                  ></div>
+                  <MouseEffect />
+                  <LayoutSpeedDial />
                 </Stack>
-                <div
-                  id="mouseEffectContainer"
-                  className="mouse-effect-container"
-                ></div>
-                <MouseEffect />
-                <LayoutSpeedDial />
-              </Stack>
-            </HydrateVariablesAtom>
+              </HydrateVariablesAtom>
+            </Provider>
           </NotiStackProvider>
         </CustomThemeProvider>
       </AppRouterCacheProvider>
