@@ -9,6 +9,7 @@ function CustomChip<T extends React.ElementType>(
   return (
     <Chip
       variant="filled"
+      {...props}
       sx={{
         bgcolor: `${color}.lightest`,
         color: `${color}.main`,
@@ -16,7 +17,6 @@ function CustomChip<T extends React.ElementType>(
         height: 28,
         ...props.sx,
       }}
-      {...props}
     />
   );
 }
