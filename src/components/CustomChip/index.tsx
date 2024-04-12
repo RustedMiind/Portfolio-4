@@ -8,9 +8,12 @@ function CustomChip<T extends React.ElementType>(
 
   return (
     <Chip
-      variant="filled"
+      variant="outlined"
+      clickable
       {...props}
+      color={color}
       sx={{
+        border: "none",
         bgcolor: `${color}.lightest`,
         color: `${color}.main`,
         fontWeight: 500,
