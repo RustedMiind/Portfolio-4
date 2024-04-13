@@ -44,6 +44,12 @@ export default async function RootLayout({
                       borderBottomColor: "background.paper",
                     },
                     transition: "background-color 500ms ease-out",
+                    ".filepond--panel-root": {
+                      bgcolor: "background.paper",
+                    },
+                    ".filepond--drop-label": {
+                      color: "primary.main",
+                    },
                   }}
                 >
                   <Stack py={12}>
