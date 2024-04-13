@@ -3,19 +3,40 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Box,
+  Button,
+  FormControl,
   Grid,
   GridProps,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
   Stack,
   TextField,
   TextFieldProps,
   Typography,
+  TypographyProps,
 } from "@mui/material";
+import { FilePond } from "react-filepond";
 import { link } from "fs";
 import { forwardRef } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
+import { Tool } from "@/types/Tool";
+import {
+  CreateProjectFormType,
+  createProjectSchema,
+} from "@/apiMethods/project/types";
+import { createProject } from "@/apiMethods/project";
+import { useSnackbar } from "notistack";
+import { defaultClientHeaders } from "@/constants/defaultClientHeaders";
+import { useRouter } from "next/navigation";
 
 const GridItem = (props: GridProps) => <Grid item xs={12} md={6} {...props} />;
+
+const ErrorTypography = (props: TypographyProps) => (
+  <Typography variant="caption" color="error" {...props} />
+);
 
 const InputItem = forwardRef<
   HTMLInputElement,
@@ -28,33 +49,37 @@ const InputItem = forwardRef<
   return (
     <GridItem {...gridProps}>
       <TextField fullWidth placeholder={props.label} ref={ref} {...props} />
-      {schemaError && (
-        <Typography variant="caption" color="error">
-          {schemaError}
-        </Typography>
-      )}
+      {schemaError && <ErrorTypography>{schemaError}</ErrorTypography>}
     </GridItem>
   );
 });
 InputItem.displayName = "InputItem (forwardRef)";
 
-const formSchema = z.object({
-  name: z.string().min(4).max(20),
-  link: z.string().url(),
-  image: z.array(z.instanceof(File)).length(1),
-  toolsIds: z.array(z.string()),
-  description: z.string().min(4).max(100),
-});
-
-type FormType = z.infer<typeof formSchema>;
-
-function Form() {
+function Form({ tools }: Props) {
   const {
+    control,
     register,
     formState: { isSubmitting, errors },
-  } = useForm<FormType>({ resolver: zodResolver(formSchema) });
+    handleSubmit,
+  } = useForm<CreateProjectFormType>({
+    resolver: zodResolver(createProjectSchema),
+  });
+  const { replace } = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const submit = handleSubmit(async (data) => {
+    try {
+      console.log(data);
+      await createProject(data, defaultClientHeaders());
+      enqueueSnackbar("Project has been saved successfully!");
+      replace("/admin/project");
+    } catch (error) {
+      enqueueSnackbar("Error Saving Project!", { variant: "error" });
+    }
+  });
+
   return (
-    <Grid container spacing={2} component={"form"}>
+    <Grid container spacing={2} component={"form"} onSubmit={submit}>
       <InputItem
         label={"Project Name"}
         {...register("name")}
@@ -63,7 +88,7 @@ function Form() {
       <InputItem
         label={"Project Link"}
         {...register("link")}
-        schemaError={errors.name?.message}
+        schemaError={errors.link?.message}
       />
       <InputItem
         gridProps={{
@@ -75,8 +100,53 @@ function Form() {
         {...register("description")}
         schemaError={errors.description?.message}
       />
+      <GridItem>
+        <Controller
+          name="image"
+          control={control}
+          render={({ field }) => (
+            <FilePond
+              files={field.value}
+              onupdatefiles={(files) => {
+                field.onChange(files.map((filepondFile) => filepondFile.file));
+              }}
+              allowMultiple={false}
+              acceptedFileTypes={["image/*"]}
+            />
+          )}
+        />
+        <ErrorTypography>{errors.image?.message}</ErrorTypography>
+      </GridItem>
+      <GridItem>
+        <FormControl fullWidth>
+          <InputLabel>Tools Used</InputLabel>
+          <Controller
+            name="toolsIds"
+            control={control}
+            render={({ field }) => (
+              <Select
+                multiple
+                input={<OutlinedInput label="Tools Used" />}
+                {...field}
+                value={field.value || []}
+              >
+                {tools.map((tool) => (
+                  <MenuItem key={tool.id} value={tool.id}>
+                    {tool.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            )}
+          />
+        </FormControl>
+      </GridItem>
+      <Button fullWidth type="submit">
+        Create
+      </Button>
     </Grid>
   );
 }
+
+type Props = { tools: Tool[] };
 
 export default Form;
