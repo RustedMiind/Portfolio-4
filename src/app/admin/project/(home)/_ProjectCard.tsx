@@ -12,14 +12,16 @@ import ToolsChipsContainer from "@/components/ToolsChipsContainer";
 
 export default function ProjectAdminCard({ project }: Props) {
   return (
-    <Card sx={{ width: 1 }}>
+    <Card
+      sx={{ width: 1, height: 1, display: "flex", flexDirection: "column" }}
+    >
       <CardMedia
         component="img"
         height="200"
         image={project.image}
         alt="project"
       />
-      <CardContent>
+      <CardContent sx={{ flexGrow: 1 }}>
         <Typography gutterBottom variant="h5" component="div">
           {project.name}
         </Typography>
