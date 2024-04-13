@@ -14,8 +14,10 @@ export const getProjects = async (noChache?: boolean) => {
   } else return undefined;
 };
 
-export const getProject = async (projectId: string) => {
-  const response = await fetch(api(`project/${projectId}`));
+export const getProject = async (projectId: string, noChache?: boolean) => {
+  const response = await fetch(api(`project/${projectId}`), {
+    cache: noChache ? "no-cache" : "default",
+  });
   if (response.ok) {
     const data = (await response.json()) as Project;
     return data;

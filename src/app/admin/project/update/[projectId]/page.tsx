@@ -4,7 +4,7 @@ import Form from "../../create/_Form";
 import { getTools } from "@/apiMethods/tool";
 
 async function UpdateProject({ params: { projectId } }: Props) {
-  const project = await getProject(projectId);
+  const project = await getProject(projectId, true);
   const tools = await getTools();
 
   return (
