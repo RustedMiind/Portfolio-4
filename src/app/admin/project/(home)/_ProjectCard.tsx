@@ -34,7 +34,7 @@ export default function ProjectAdminCard({ project }: Props) {
       <CardActions>
         <Button
           component={Link}
-          href={`admin/project/${project.id}`}
+          href={`/admin/project/update/${project.id}`}
           color="secondary"
           startIcon={<EditIcon />}
         >

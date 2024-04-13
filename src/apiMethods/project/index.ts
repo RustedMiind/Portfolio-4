@@ -16,8 +16,10 @@ export const getProjects = async (noChache?: boolean) => {
 
 export const getProject = async (projectId: string) => {
   const response = await fetch(api(`project/${projectId}`));
-  const data = (await response.json()) as Project;
-  return data;
+  if (response.ok) {
+    const data = (await response.json()) as Project;
+    return data;
+  } else return undefined;
 };
 
 export const createProject = async (
@@ -27,5 +29,20 @@ export const createProject = async (
   const project = await axios.post<Project>(api("project"), serialize(data), {
     headers: authHeaders,
   });
+  return project;
+};
+
+export const updateProject = async (
+  projectId: string,
+  data: CreateProjectFormType,
+  authHeaders: Record<string, string>
+) => {
+  const project = await axios.patch<Project>(
+    api(`project/${projectId}`),
+    serialize(data),
+    {
+      headers: authHeaders,
+    }
+  );
   return project;
 };

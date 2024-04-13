@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import React from "react";
 import { HydrateUserAtom } from "./_HydrateUserAtom";
 import Unauthorized from "@/components/Unauthorized";
+import BackToHomeBtn from "@/components/BackToHomeBtn";
 
 async function Layout({ children }: { children: React.ReactNode }) {
   const user = await checkUser();
@@ -13,7 +14,10 @@ async function Layout({ children }: { children: React.ReactNode }) {
   if (user)
     return (
       <HydrateUserAtom value={user}>
-        <Stack>{children}</Stack>
+        <Stack spacing={1}>
+          <BackToHomeBtn />
+          {children}
+        </Stack>
       </HydrateUserAtom>
     );
   else return <Unauthorized />;

@@ -22,6 +22,7 @@
     "filepond-plugin-file-validate-type": "^1.2.9",
     "filepond-plugin-image-exif-orientation": "^1.0.11",
     "filepond-plugin-image-preview": "^4.6.12",
+    "fslightbox-react": "^1.7.6",
     "jotai": "^2.7.1",
     "js-cookie": "^3.0.5",
     "next": "14.1.4",
@@ -37,6 +38,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/fslightbox-react": "^1.7.7",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
