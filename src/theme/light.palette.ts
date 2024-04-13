@@ -14,7 +14,7 @@ export const LightPalette: PaletteOptions = {
   },
   background: {
     default: "#EFEFEF",
-    paper: "#EFEFEF",
+    paper: "#F8F8F8",
   },
   success: {
     main: green.A400,
