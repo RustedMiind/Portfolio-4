@@ -9,7 +9,7 @@ const GridItem = (props: GridProps) => (
 );
 
 async function ProjectsHomePage() {
-  const projects = await getProjects();
+  const projects = await getProjects(true);
 
   return (
     <Stack>
