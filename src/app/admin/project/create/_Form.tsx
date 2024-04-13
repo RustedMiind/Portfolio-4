@@ -17,6 +17,7 @@ import {
   Typography,
   TypographyProps,
 } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { FilePond } from "react-filepond";
 import { link } from "fs";
 import { forwardRef } from "react";
@@ -140,9 +141,18 @@ function Form({ tools }: Props) {
           />
         </FormControl>
       </GridItem>
-      <Button fullWidth type="submit">
-        Create
-      </Button>
+
+      <Grid item xs={12}>
+        <LoadingButton
+          fullWidth
+          type="submit"
+          size="large"
+          variant="outlined"
+          loading={isSubmitting}
+        >
+          Create
+        </LoadingButton>
+      </Grid>
     </Grid>
   );
 }
