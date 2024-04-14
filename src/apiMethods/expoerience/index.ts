@@ -7,14 +7,23 @@ import { serialize } from "object-to-formdata";
 
 export const getExperiences = async () => {
   const response = await fetch(api("experience"));
-  const data = (await response.json()) as Experience[];
-  return data;
+  if (response.ok) {
+    return (await response.json()) as Experience[];
+  }
+  return undefined;
 };
 
-export const getExperience = async (experienceId: string) => {
-  const response = await fetch(api(`experience/${experienceId}`));
-  const data = (await response.json()) as Experience;
-  return data;
+export const getExperience = async (
+  experienceId: string,
+  noChache?: boolean
+) => {
+  const response = await fetch(api(`experience/${experienceId}`), {
+    cache: noChache ? "no-cache" : "default",
+  });
+  if (response.ok) {
+    return (await response.json()) as Experience;
+  }
+  return undefined;
 };
 
 export const createExperience = async (

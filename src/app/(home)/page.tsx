@@ -19,8 +19,8 @@ export default async function Home() {
         <Stack spacing={12}>
           <ScrollSpyContainer>
             <AboutSection />
-            <ExperienceSection experiences={experiences} />
-            <ProjectsSection projects={projects} />
+            {experiences && <ExperienceSection experiences={experiences} />}
+            {projects && <ProjectsSection projects={projects} />}
           </ScrollSpyContainer>
         </Stack>
       </Stack>

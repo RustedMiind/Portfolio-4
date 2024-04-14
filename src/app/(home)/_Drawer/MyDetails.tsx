@@ -13,7 +13,7 @@ function MyDetails() {
         {variables?.main_heading}
       </Typography>
       <Typography variant="h6" fontWeight={700}>
-        {variables?.share_title}
+        {variables?.main_subtitle}
       </Typography>
       <Typography variant="body1" color={"text.secondary"}>
         {variables?.my_description}
