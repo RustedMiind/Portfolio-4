@@ -10,11 +10,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import Link from "next/link";
 import ToolsChipsContainer from "@/components/ToolsChipsContainer";
 import { Experience } from "@/types/Experience";
+import moment from "moment";
 
 export default function ExperienceAdminCard({ experience }: Props) {
-  const startDate = new Date(experience.start_date).toISOString();
+  const startDate = moment(experience.start_date).format("YYYY-MM");
   const endDate = experience.end_date
-    ? new Date(experience.end_date).toISOString()
+    ? moment(experience.end_date).format("YYYY-MM")
     : null;
 
   return (
