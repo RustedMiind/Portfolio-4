@@ -12,6 +12,7 @@ function ToolsChipsContainer({ tools }: Props) {
           label={tool.name}
           component={Link}
           href={tool.link}
+          target="_blank"
           sx={{ cursor: "pointer" }}
         />
       ))}
