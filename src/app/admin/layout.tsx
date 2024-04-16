@@ -14,10 +14,7 @@ async function Layout({ children }: { children: React.ReactNode }) {
   if (user)
     return (
       <HydrateUserAtom value={user}>
-        <Stack spacing={1}>
-          <BackToHomeBtn />
-          {children}
-        </Stack>
+        <Stack spacing={1}>{children}</Stack>
       </HydrateUserAtom>
     );
   else return <Unauthorized />;
