@@ -59,7 +59,7 @@ const InputItem = forwardRef<
 });
 InputItem.displayName = "InputItem (forwardRef)";
 
-function Form({ tools, project }: Props) {
+function Form({ tools = [], project }: Props) {
   const {
     control,
     register,
@@ -197,6 +197,6 @@ function Form({ tools, project }: Props) {
   );
 }
 
-type Props = { tools: Tool[]; project?: Project };
+type Props = { tools?: Tool[]; project?: Project };
 
 export default Form;
