@@ -35,52 +35,46 @@ function LoginDialog({ onClose, open }: Props) {
   });
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      fullWidth
-      maxWidth="sm"
-      component={"form"}
-      onSubmit={onSubmit}
-      noValidate
-    >
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
       <DialogTitle>Login</DialogTitle>
-      <DialogContent>
-        <DialogContentText>Is you za reel ali soliman ?</DialogContentText>
-        <Stack spacing={2} my={2}>
-          <Box>
-            <TextField
-              autoFocus
-              label="Email Address"
-              type="email"
-              fullWidth
-              variant="standard"
-              {...register("email")}
-            />
-            <Typography variant="body2" color={"error"}>
-              {errors.email?.message}
-            </Typography>
-          </Box>
-          <Box>
-            <TextField
-              label="Password"
-              type="password"
-              fullWidth
-              variant="standard"
-              {...register("password")}
-            />
-            <Typography variant="body2" color={"error"}>
-              {errors.password?.message}
-            </Typography>
-          </Box>
-        </Stack>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button type="submit" variant="contained">
-          Login
-        </Button>
-      </DialogActions>
+      <Stack component={"form"} onSubmit={onSubmit} noValidate>
+        <DialogContent>
+          <DialogContentText>Is you za reel ali soliman ?</DialogContentText>
+          <Stack spacing={2} my={2}>
+            <Box>
+              <TextField
+                autoFocus
+                label="Email Address"
+                type="email"
+                fullWidth
+                variant="standard"
+                {...register("email")}
+              />
+              <Typography variant="body2" color={"error"}>
+                {errors.email?.message}
+              </Typography>
+            </Box>
+            <Box>
+              <TextField
+                label="Password"
+                type="password"
+                fullWidth
+                variant="standard"
+                {...register("password")}
+              />
+              <Typography variant="body2" color={"error"}>
+                {errors.password?.message}
+              </Typography>
+            </Box>
+          </Stack>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button type="submit" variant="contained">
+            Login
+          </Button>
+        </DialogActions>
+      </Stack>
     </Dialog>
   );
 }
