@@ -3,15 +3,14 @@
 import { variablesAtom } from "@/jotai/atoms/Variables";
 import { Typography } from "@mui/material";
 import { useAtomValue } from "jotai";
+import MainTitle from "./MainTitle";
 
 function MyDetails() {
   const variables = useAtomValue(variablesAtom);
 
   return (
     <>
-      <Typography variant="h3" fontWeight={700}>
-        {variables?.main_heading}
-      </Typography>
+      <MainTitle main={variables?.main_heading} />
       <Typography variant="h6" fontWeight={700}>
         {variables?.main_subtitle}
       </Typography>
