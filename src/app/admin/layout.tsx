@@ -1,3 +1,5 @@
+"use client";
+
 import { checkUser } from "@/apiMethods/auth";
 import { userAtom } from "@/jotai/atoms/User";
 import HydrateAtoms from "@/jotai/HydrateAtoms";
@@ -7,16 +9,12 @@ import React from "react";
 import { HydrateUserAtom } from "./_HydrateUserAtom";
 import Unauthorized from "@/components/Unauthorized";
 import BackToHomeBtn from "@/components/BackToHomeBtn";
+import { useAtomValue } from "jotai";
 
-async function Layout({ children }: { children: React.ReactNode }) {
-  const user = await checkUser();
+function Layout({ children }: { children: React.ReactNode }) {
+  const user = useAtomValue(userAtom);
 
-  if (user)
-    return (
-      <HydrateUserAtom value={user}>
-        <Stack spacing={1}>{children}</Stack>
-      </HydrateUserAtom>
-    );
+  if (user) return <Stack spacing={1}>{children}</Stack>;
   else return <Unauthorized />;
 }
 
