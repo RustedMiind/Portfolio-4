@@ -2,7 +2,7 @@ import api from "@/constants/api";
 import { Tool } from "@/types/Tool";
 import axios from "axios";
 
-export const getTools = async (noCache?: boolean) => {
+export const getTools = async (noCache: boolean = true) => {
   const response = await fetch(api("tool"), {
     cache: noCache ? "no-cache" : "default",
   });
