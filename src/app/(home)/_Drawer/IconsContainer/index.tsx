@@ -38,7 +38,7 @@ function IconsContainer() {
       <NavIcon
         title="Phone Number"
         subTitle={variables?.phone}
-        url={`tel:${variables?.phone?.trim()}`}
+        url={`tel:${variables?.phone?.replace(" ", "")}`}
         inSamePage
       >
         <PhoneIcon />
@@ -46,7 +46,7 @@ function IconsContainer() {
       <NavIcon
         title="WhatsApp"
         subTitle={variables?.whats_app}
-        url={`https://wa.me/${variables?.whats_app?.trim()}`}
+        url={`https://wa.me/${variables?.whats_app?.replace(" ", "")}`}
       >
         <WhatsAppIcon />
       </NavIcon>
