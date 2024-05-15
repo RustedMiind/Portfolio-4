@@ -12,3 +12,8 @@ export interface Variables {
   share_hashtags: string;
   resume: string;
 }
+
+export interface VariablesItem {
+  key: keyof Variables;
+  value: string;
+}

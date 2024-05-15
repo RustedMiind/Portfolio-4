@@ -24,6 +24,9 @@ function AdminHomePage() {
           <GridItem>
             <ModuleCard href="/admin/tool" title="Tools" />
           </GridItem>
+          <GridItem>
+            <ModuleCard href="/admin/cms" title="Content Variables" />
+          </GridItem>
         </Grid>
       </Box>
     </Stack>
