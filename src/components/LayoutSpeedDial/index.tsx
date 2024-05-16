@@ -54,8 +54,9 @@ function LayoutSpeedDial() {
         icon: <AccountBoxIcon />,
         tooltipTitle: "View Resume",
         FabProps: {
-          component: Link,
+          component: "a",
           href: variables?.resume,
+          target: "_blank" as unknown,
           disabled: !Boolean(variables?.resume.length),
         },
       },
