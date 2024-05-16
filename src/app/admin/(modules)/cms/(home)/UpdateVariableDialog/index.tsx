@@ -41,7 +41,7 @@ function UpdateVariableDialog({ onClose, open, variable }: Props) {
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
       <DialogTitle>
-        Update ({variable?.key.replace("_", " ")}) variable
+        Update ({variable?.key.replaceAll("_", " ")}) variable
       </DialogTitle>
       <Stack component="form" onSubmit={onSubmit} noValidate>
         <DialogContent>
@@ -49,7 +49,7 @@ function UpdateVariableDialog({ onClose, open, variable }: Props) {
             multiline
             fullWidth
             variant="filled"
-            label={variable?.key.replace("_", " ")}
+            label={variable?.key.replaceAll("_", " ")}
             {...register("value")}
           />
         </DialogContent>

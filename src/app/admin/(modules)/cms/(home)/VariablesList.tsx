@@ -31,7 +31,7 @@ function VariablesList({ variables }: Props) {
         <Card key={variable.key} sx={{ minWidth: 275 }}>
           <CardContent>
             <Typography variant="h5" color="text.secondary" gutterBottom>
-              {variable.key.replace("_", " ").toUpperCase()}
+              {variable.key.replaceAll("_", " ").toUpperCase()}
             </Typography>
 
             <Typography variant="body2">{variable.value}</Typography>
