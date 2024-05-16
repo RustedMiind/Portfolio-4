@@ -24,6 +24,9 @@ import ContactDialog from "./ContactDialog";
 import ShareDrawer from "./ShareDrawer";
 import { CustomThemeContext } from "@/theme/CustomThemeContext";
 import { ThemeMode } from "@/theme/ThemeMode.enum";
+import Link from "next/link";
+import { useAtomValue } from "jotai";
+import { variablesAtom } from "@/jotai/atoms/Variables";
 
 function LayoutSpeedDial() {
   const [contactOpen, setContactOpen] = React.useState(false);
@@ -34,6 +37,9 @@ function LayoutSpeedDial() {
   const handleOpenShare = () => setShareOpen(true);
   const handleCloseShare = () => setShareOpen(false);
   const { mode, toggleMode } = React.useContext(CustomThemeContext);
+
+  const variables = useAtomValue(variablesAtom);
+
   const actions = React.useMemo<
     (SpeedDialActionProps & { tooltipTitle: string })[]
   >(
@@ -42,10 +48,23 @@ function LayoutSpeedDial() {
         icon: <MessageIcon />,
         tooltipTitle: "Leave a message",
         onClick: handleOpenContact,
+        FabProps: { disabled: true },
       },
-      { icon: <AccountBoxIcon />, tooltipTitle: "View Resume" },
+      {
+        icon: <AccountBoxIcon />,
+        tooltipTitle: "View Resume",
+        FabProps: {
+          component: Link,
+          href: variables?.resume,
+          disabled: !Boolean(variables?.resume.length),
+        },
+      },
       { icon: <ShareIcon />, tooltipTitle: "Share", onClick: handleOpenShare },
-      { icon: <TranslateIcon />, tooltipTitle: "Translate to Arabic" },
+      {
+        icon: <TranslateIcon />,
+        tooltipTitle: "Translate to Arabic",
+        FabProps: { disabled: true },
+      },
       mode === ThemeMode.DARK
         ? {
             icon: <LightModeIcon />,
