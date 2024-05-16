@@ -4,9 +4,16 @@ import { Project } from "@/types/Project";
 import { CreateExperienceFormType } from "./types";
 import axios from "axios";
 import { serialize } from "object-to-formdata";
+import queryString from "query-string";
 
-export const getExperiences = async () => {
-  const response = await fetch(api("experience"));
+type ParamsT = { limit?: number };
+export const getExperiences = async (params?: ParamsT, noChache?: boolean) => {
+  const response = await fetch(
+    api(`experience?${queryString.stringify(params || {})}`),
+    {
+      cache: noChache ? "no-cache" : "default",
+    }
+  );
   if (response.ok) {
     return (await response.json()) as Experience[];
   }

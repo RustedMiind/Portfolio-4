@@ -3,11 +3,17 @@ import { Project } from "@/types/Project";
 import { CreateProjectFormType } from "./types";
 import axios from "axios";
 import { serialize } from "object-to-formdata";
+import queryString from "query-string";
 
-export const getProjects = async (noChache?: boolean) => {
-  const response = await fetch(api("project"), {
-    cache: noChache ? "no-cache" : "default",
-  });
+type ParamsT = { limit?: number };
+export const getProjects = async (noChache?: boolean, params?: ParamsT) => {
+  const response = await fetch(
+    api(`project?:${queryString.stringify(params || {})}`),
+    {
+      cache: noChache ? "no-cache" : "default",
+    }
+  );
+  console.log(api(`project?${queryString.stringify(params || {})}`));
   if (response.ok) {
     const data = (await response.json()) as Project[];
     return data;

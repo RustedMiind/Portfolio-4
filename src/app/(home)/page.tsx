@@ -9,8 +9,8 @@ import { getExperiences } from "@/apiMethods/expoerience";
 import { getProjects } from "@/apiMethods/project";
 
 export default async function Home() {
-  const projects = await getProjects();
-  const experiences = await getExperiences();
+  const projects = await getProjects(true, { limit: 3 });
+  const experiences = await getExperiences({ limit: 3 }, true);
 
   return (
     <>
