@@ -10,7 +10,9 @@ const GridItem = (props: GridProps) => (
 );
 
 async function ExperiencesMainPage() {
-  const experiences = await getExperiences();
+  const experiences = await getExperiences(
+    {},true
+  );
 
   return (
     <Stack>
