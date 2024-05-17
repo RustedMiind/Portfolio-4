@@ -7,7 +7,7 @@ import { getExperiences } from "@/apiMethods/expoerience";
 async function UpdateProject({ params: { projectId } }: Props) {
   const project = await getProject(projectId, true);
   const tools = await getTools();
-  const experiences = await getExperiences();
+  const experiences = await getExperiences({}, true);
 
   return (
     <Stack spacing={2}>

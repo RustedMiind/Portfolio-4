@@ -5,7 +5,7 @@ import { getExperiences } from "@/apiMethods/expoerience";
 
 async function CreateProjectPage() {
   const tools = await getTools();
-  const experiences = await getExperiences();
+  const experiences = await getExperiences({}, true);
   return (
     <Stack spacing={2}>
       <Typography variant="h3" fontWeight={700}>
