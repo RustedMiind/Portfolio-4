@@ -35,6 +35,7 @@ import { defaultClientHeaders } from "@/constants/defaultClientHeaders";
 import { useRouter } from "next/navigation";
 import { Project } from "@/types/Project";
 import ViewImage from "@/components/ViewImage";
+import { Experience } from "@/types/Experience";
 
 const GridItem = (props: GridProps) => <Grid item xs={12} md={6} {...props} />;
 
@@ -59,7 +60,7 @@ const InputItem = forwardRef<
 });
 InputItem.displayName = "InputItem (forwardRef)";
 
-function Form({ tools = [], project }: Props) {
+function Form({ tools = [], project, experiences }: Props) {
   const {
     control,
     register,
@@ -74,8 +75,16 @@ function Form({ tools = [], project }: Props) {
   const { replace } = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
+  const experienceOptions = [
+    { id: "ind", org_name: "Individual" },
+    ...experiences,
+  ];
+
   const submit = handleSubmit(async (data) => {
     try {
+      if (!data.experienceId || data.experienceId === "ind") {
+        delete data.experienceId;
+      }
       console.log(data);
       if (project)
         await updateProject(project.id, data, defaultClientHeaders());
@@ -93,6 +102,7 @@ function Form({ tools = [], project }: Props) {
       link: project?.link,
       name: project?.name,
       toolsIds: project?.tools?.map((tool) => tool.id),
+      experienceId: project?.experienceId || null,
     });
   }, [project?.id]);
 
@@ -121,6 +131,26 @@ function Form({ tools = [], project }: Props) {
         {...register("description")}
         schemaError={errors.description?.message}
       />
+      <Controller
+        name="experienceId"
+        control={control}
+        render={({ field }) => (
+          <InputItem
+            label={"Select Experience"}
+            defaultValue={project?.experienceId || "ind"}
+            select
+            {...field}
+            schemaError={errors.experienceId?.message}
+          >
+            {experienceOptions.map((exp) => (
+              <MenuItem key={exp.id} value={exp.id}>
+                {exp.org_name}
+              </MenuItem>
+            ))}
+          </InputItem>
+        )}
+      />
+
       <GridItem>
         <Controller
           name="image"
@@ -197,6 +227,6 @@ function Form({ tools = [], project }: Props) {
   );
 }
 
-type Props = { tools?: Tool[]; project?: Project };
+type Props = { tools?: Tool[]; project?: Project; experiences: Experience[] };
 
 export default Form;

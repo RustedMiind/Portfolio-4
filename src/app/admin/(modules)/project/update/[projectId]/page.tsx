@@ -2,10 +2,12 @@ import { getProject } from "@/apiMethods/project";
 import { Box, Stack, Typography } from "@mui/material";
 import Form from "../../create/_Form";
 import { getTools } from "@/apiMethods/tool";
+import { getExperiences } from "@/apiMethods/expoerience";
 
 async function UpdateProject({ params: { projectId } }: Props) {
   const project = await getProject(projectId, true);
   const tools = await getTools();
+  const experiences = await getExperiences();
 
   return (
     <Stack spacing={2}>
@@ -13,7 +15,9 @@ async function UpdateProject({ params: { projectId } }: Props) {
         Update Project
       </Typography>
       <Box>
-        <Form tools={tools} project={project} />
+        {experiences && (
+          <Form tools={tools} project={project} experiences={experiences} />
+        )}
       </Box>
     </Stack>
   );

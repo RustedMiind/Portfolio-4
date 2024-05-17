@@ -6,6 +6,7 @@ const formSchema = z.object({
   image: z.array(z.instanceof(File)).length(1),
   toolsIds: z.array(z.string()).optional(),
   description: z.string().min(4).max(200),
+  experienceId: z.string().optional().nullable(),
 });
 
 type FormType = z.infer<typeof formSchema>;
