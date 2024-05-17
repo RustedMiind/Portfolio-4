@@ -1,4 +1,6 @@
 import CustomChip from "@/components/CustomChip";
+import BaseLink from "@/components/Links/Base";
+import { Project } from "@/types/Project";
 import {
   TableRow as MuiTableRow,
   Stack,
@@ -7,6 +9,7 @@ import {
   Typography,
   TypographyProps,
 } from "@mui/material";
+import Link from "next/link";
 
 const SecondaryTableCell = ({
   tableCellProps,
@@ -34,28 +37,32 @@ type MainTableCellProps = TypographyProps & {
   tableCellProps?: TableCellProps;
 };
 
-function TableRow() {
+function TableRow({ project }: Props) {
   return (
     <MuiTableRow>
       <SecondaryTableCell>2023</SecondaryTableCell>
-      <MainTableCell tableCellProps={{ colSpan: 3 }}>Hello There</MainTableCell>
+      <MainTableCell tableCellProps={{ colSpan: 3 }}>
+        {project.name}
+      </MainTableCell>
       <SecondaryTableCell
         tableCellProps={{
           colSpan: 2,
           sx: { display: { xs: "none", lg: "table-cell" } },
         }}
       >
-        Vision Dimensions
+        {project.experience?.org_name}
       </SecondaryTableCell>
       <TableCell colSpan={4} sx={{ display: { xs: "none", sm: "table-cell" } }}>
         <Stack direction="row" gap={1} flexWrap={"wrap"}>
-          <CustomChip label="React" />
-          <CustomChip label="Next" />
-          <CustomChip label="Bootstrap" />
-          <CustomChip label="Tailwind" />
-          <CustomChip label="Material UI" />
-          <CustomChip label="Nestjs" />
-          <CustomChip label="Laravel" />
+          {project.tools?.map((tool) => (
+            <CustomChip
+              key={tool.id}
+              label={tool.name}
+              component={"a"}
+              target="_blank"
+              href={tool.link}
+            />
+          ))}
         </Stack>
       </TableCell>
       <SecondaryTableCell
@@ -64,10 +71,21 @@ function TableRow() {
           sx: { display: { xs: "none", md: "table-cell" } },
         }}
       >
-        2023
+        <Typography
+          variant="body2"
+          component={"a"}
+          href={project.link}
+          target="_blank"
+        >
+          Explore
+        </Typography>
       </SecondaryTableCell>
     </MuiTableRow>
   );
 }
+
+type Props = {
+  project: Project;
+};
 
 export default TableRow;

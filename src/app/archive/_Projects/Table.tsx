@@ -11,12 +11,13 @@ import {
   TableCellProps,
 } from "@mui/material";
 import TableRow from "./TableRow";
+import { Project } from "@/types/Project";
 
 const TableHeadCell = (props: TableCellProps) => (
   <TableCell variant="head" {...props} sx={{ fontWeight: 700, ...props.sx }} />
 );
 
-function ProjectsTable() {
+function ProjectsTable({ projects }: Props) {
   return (
     <TableContainer>
       <Table
@@ -53,16 +54,16 @@ function ProjectsTable() {
           </MuiTableRow>
         </TableHead>
         <TableBody>
-          <TableRow />
-          <TableRow />
-          <TableRow />
-          <TableRow />
-          <TableRow />
-          <TableRow />
+          {projects.map((project) => (
+            <TableRow key={project.id} project={project} />
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
 
+type Props = {
+  projects: Project[];
+};
 export default ProjectsTable;
