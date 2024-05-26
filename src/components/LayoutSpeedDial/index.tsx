@@ -48,7 +48,7 @@ function LayoutSpeedDial() {
         icon: <MessageIcon />,
         tooltipTitle: "Leave a message",
         onClick: handleOpenContact,
-        FabProps: { disabled: true },
+        // FabProps: { disabled: true },
       },
       {
         icon: <AccountBoxIcon />,

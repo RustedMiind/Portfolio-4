@@ -19,6 +19,9 @@ import {
 } from "@mui/material";
 import { forwardRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { ContactFormSchema, ContactFormType } from "@/apiMethods/contact/types";
+import { sendContactEmail } from "@/apiMethods/contact";
+import { useSnackbar } from "notistack";
 
 const GridItem = (props: GridProps) => <Grid item xs={12} md={6} {...props} />;
 
@@ -43,31 +46,31 @@ const InputItem = forwardRef<
 });
 InputItem.displayName = "InputItem (forwardRef)";
 
-const formSchema = z.object({
-  name: z.string().min(2).max(20),
-  email: z.string().email(),
-  organization: z.string().optional(),
-  subject: z.string().min(8).max(30),
-  message: z.string().min(8),
-});
-type FormType = z.infer<typeof formSchema>;
-
 function ContactDialog(props: DialogProps & { onClose: () => void }) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormType>({ resolver: zodResolver(formSchema) });
+  } = useForm<ContactFormType>({ resolver: zodResolver(ContactFormSchema) });
 
   useEffect(() => {
     reset();
   }, [props.open]);
 
-  const submit = handleSubmit(console.log);
+  const submit = handleSubmit(async (data) => {
+    try {
+      const res = await sendContactEmail(data);
+      enqueueSnackbar("Your Message Sent Successfully");
+      props.onClose();
+    } catch (error) {
+      enqueueSnackbar("Error Sending Your Message", { variant: "error" });
+    }
+    return;
+  });
 
   return (
     <Dialog
@@ -88,19 +91,19 @@ function ContactDialog(props: DialogProps & { onClose: () => void }) {
           <Grid container spacing={2}>
             <InputItem
               label="Your Name"
-              {...register("name")}
-              schemaError={errors.name?.message}
+              {...register("sender_name")}
+              schemaError={errors.sender_name?.message}
             />
             <InputItem
               label="Your Email"
               type="email"
-              {...register("email")}
-              schemaError={errors.email?.message}
+              {...register("sender_email")}
+              schemaError={errors.sender_email?.message}
             />
             <InputItem
               label="Organization Name"
-              {...register("organization")}
-              schemaError={errors.organization?.message}
+              {...register("org_name")}
+              schemaError={errors.org_name?.message}
             />
             <InputItem
               label="Subject"
@@ -110,8 +113,8 @@ function ContactDialog(props: DialogProps & { onClose: () => void }) {
             />
             <InputItem
               label="Message"
-              {...register("message")}
-              schemaError={errors.message?.message}
+              {...register("body")}
+              schemaError={errors.body?.message}
               multiline
               rows={4}
               gridProps={{ md: 12 }}
