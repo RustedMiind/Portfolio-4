@@ -8,7 +8,7 @@ import queryString from "query-string";
 type ParamsT = { limit?: number; featured?: boolean };
 export const getProjects = async (noChache?: boolean, params?: ParamsT) => {
   const response = await fetch(
-    api(`project?:${queryString.stringify(params || {})}`),
+    api(`project?${queryString.stringify(params || {})}`),
     {
       cache: noChache ? "no-cache" : "default",
     }

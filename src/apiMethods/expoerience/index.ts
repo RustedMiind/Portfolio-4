@@ -13,6 +13,7 @@ export const getExperiences = async (params?: ParamsT, noChache?: boolean) => {
       cache: noChache ? "no-cache" : "default",
     }
   );
+  console.log(response);
   if (response.ok) {
     return (await response.json()) as Experience[];
   }
