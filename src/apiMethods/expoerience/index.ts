@@ -3,10 +3,9 @@ import { Experience } from "@/types/Experience";
 import { Project } from "@/types/Project";
 import { CreateExperienceFormType } from "./types";
 import axios from "axios";
-import { serialize } from "object-to-formdata";
 import queryString from "query-string";
 
-type ParamsT = { limit?: number };
+type ParamsT = { limit?: number; featured?: boolean };
 export const getExperiences = async (params?: ParamsT, noChache?: boolean) => {
   const response = await fetch(
     api(`experience?${queryString.stringify(params || {})}`),
