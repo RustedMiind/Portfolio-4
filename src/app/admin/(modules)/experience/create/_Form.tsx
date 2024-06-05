@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   FormControl,
+  FormControlLabel,
   Grid,
   GridProps,
   InputLabel,
@@ -12,6 +13,7 @@ import {
   OutlinedInput,
   Select,
   Stack,
+  Switch,
   TextField,
   TextFieldProps,
   Typography,
@@ -99,7 +101,9 @@ function Form({ tools = [], experience }: Props) {
       toolsIds: experience?.tools?.map((tool) => tool.id),
       end_date: experience?.end_date,
       start_date: experience?.start_date,
+      featured: experience?.featured,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [experience?.id]);
 
   return (
@@ -188,6 +192,21 @@ function Form({ tools = [], experience }: Props) {
             )}
           />
         </FormControl>
+      </GridItem>
+
+      <GridItem>
+        <Controller
+          name="featured"
+          control={control}
+          render={({ field }) => (
+            <FormControlLabel
+              checked={field.value}
+              onChange={(e, checked) => field.onChange(e)}
+              control={<Switch />}
+              label="Is Featured Experience"
+            />
+          )}
+        />
       </GridItem>
       <Grid item xs={12}>
         <LoadingButton

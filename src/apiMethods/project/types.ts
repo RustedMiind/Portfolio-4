@@ -7,6 +7,7 @@ const formSchema = z.object({
   toolsIds: z.array(z.string()).optional(),
   description: z.string().min(4).max(200),
   experienceId: z.string().optional().nullable(),
+  featured: z.boolean().optional(),
 });
 
 type FormType = z.infer<typeof formSchema>;

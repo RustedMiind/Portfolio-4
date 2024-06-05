@@ -1,3 +1,4 @@
+import { features } from "process";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -7,6 +8,7 @@ const formSchema = z.object({
   end_date: z.string().datetime().optional(),
   toolsIds: z.array(z.string()).optional(),
   org_name: z.string().min(3).max(30),
+  featured: z.boolean().optional(),
 });
 
 type FormType = z.infer<typeof formSchema>;

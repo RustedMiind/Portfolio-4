@@ -5,6 +5,7 @@ import {
   Box,
   Button,
   FormControl,
+  FormControlLabel,
   Grid,
   GridProps,
   InputLabel,
@@ -12,6 +13,7 @@ import {
   OutlinedInput,
   Select,
   Stack,
+  Switch,
   TextField,
   TextFieldProps,
   Typography,
@@ -211,7 +213,20 @@ function Form({ tools = [], project, experiences }: Props) {
           />
         </FormControl>
       </GridItem>
-
+      <GridItem>
+        <Controller
+          name="featured"
+          control={control}
+          render={({ field }) => (
+            <FormControlLabel
+              checked={field.value}
+              onChange={(e, checked) => field.onChange(e)}
+              control={<Switch />}
+              label="Is Featured Project"
+            />
+          )}
+        />
+      </GridItem>
       <Grid item xs={12}>
         <LoadingButton
           fullWidth
