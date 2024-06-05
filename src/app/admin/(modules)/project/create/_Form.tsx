@@ -105,6 +105,7 @@ function Form({ tools = [], project, experiences }: Props) {
       name: project?.name,
       toolsIds: project?.tools?.map((tool) => tool.id),
       experienceId: project?.experienceId || null,
+      featured: project?.featured,
     });
   }, [project?.id]);
 
