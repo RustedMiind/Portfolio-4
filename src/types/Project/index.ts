@@ -10,4 +10,5 @@ export interface Project {
   experience?: Experience;
   description: string;
   tools?: Tool[];
+  featured: boolean;
 }

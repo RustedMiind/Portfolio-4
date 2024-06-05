@@ -8,4 +8,5 @@ export interface Experience {
   end_date: any;
   org_name: string;
   tools?: Tool[];
+  featured: boolean;
 }
