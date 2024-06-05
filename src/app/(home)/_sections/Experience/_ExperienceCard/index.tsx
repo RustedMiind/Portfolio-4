@@ -1,5 +1,6 @@
 import CardStructure from "@/components/CardStructure";
 import CustomChip from "@/components/CustomChip";
+import ToolsChipsContainer from "@/components/ToolsChipsContainer";
 import { Experience } from "@/types/Experience";
 import { Chip, Stack, Typography } from "@mui/material";
 
@@ -31,9 +32,9 @@ function ExperienceCard({ experience }: Props) {
             {experience.description}
           </Typography>
           <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-            {experience.tools?.map((tool) => (
-              <CustomChip key={tool.id} label={tool.name} />
-            ))}
+            {experience.tools && (
+              <ToolsChipsContainer tools={experience.tools} />
+            )}
           </Stack>
         </Stack>
       }

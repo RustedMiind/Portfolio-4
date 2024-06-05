@@ -7,10 +7,20 @@ import { Experience } from "@/types/Experience";
 
 function ExperienceSection({ experiences }: Props) {
   return (
-    <SectionContainer spacing={2} id="experience-section">
-      {experiences.map((experience) => (
-        <ExperienceCard key={experience.id} experience={experience} />
-      ))}
+    <SectionContainer id="experience-section">
+      <Typography
+        gutterBottom
+        variant="h4"
+        fontWeight={700}
+        display={{ md: "none" }}
+      >
+        Work Experience
+      </Typography>
+      <Stack spacing={2}>
+        {experiences.map((experience) => (
+          <ExperienceCard key={experience.id} experience={experience} />
+        ))}
+      </Stack>
     </SectionContainer>
   );
 }
