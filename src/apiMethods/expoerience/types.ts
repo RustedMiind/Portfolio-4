@@ -5,7 +5,7 @@ const formSchema = z.object({
   title: z.string().min(4).max(40),
   description: z.string().min(4).max(200),
   start_date: z.string().datetime(),
-  end_date: z.string().datetime().optional(),
+  end_date: z.string().datetime().optional().nullable(),
   toolsIds: z.array(z.string()).optional(),
   org_name: z.string().min(3).max(30),
   featured: z.boolean().optional(),

@@ -11,7 +11,7 @@ async function UpdateProject({ params: { experienceId } }: Props) {
   return (
     <Stack spacing={2}>
       <Typography variant="h3" fontWeight={700}>
-        Update Project
+        Update Experience
       </Typography>
       <Box>
         <Form tools={tools} experience={experience} />
