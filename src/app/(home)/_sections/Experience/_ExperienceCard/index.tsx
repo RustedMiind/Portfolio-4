@@ -1,8 +1,11 @@
+"use client";
+
 import CardStructure from "@/components/CardStructure";
-import CustomChip from "@/components/CustomChip";
 import ToolsChipsContainer from "@/components/ToolsChipsContainer";
+import { mainTransition } from "@/constants/transition";
 import { Experience } from "@/types/Experience";
-import { Chip, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 
 function ExperienceCard({ experience }: Props) {
   const startYear = new Date(experience.start_date).getFullYear();
@@ -11,34 +14,54 @@ function ExperienceCard({ experience }: Props) {
     : null;
 
   return (
-    <CardStructure
-      mediaContent={
-        <Stack>
-          <Typography variant="body2" color={"text.secondary"}>
-            {startYear} - {endYear || "Present"}
-          </Typography>
-        </Stack>
-      }
-      mainContent={
-        <Stack spacing={0.5}>
-          <Typography
-            variant="body1"
-            className="text-color-effect"
-            fontWeight={600}
-          >
-            {experience.title}
-          </Typography>
-          <Typography variant="body2" color={"text.secondary"}>
-            {experience.description}
-          </Typography>
-          <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
-            {experience.tools && (
-              <ToolsChipsContainer tools={experience.tools} />
-            )}
+    <motion.div
+      transition={mainTransition}
+      whileInView={"in-view"}
+      variants={{ "in-view": { opacity: 1, x: 0 } }}
+      initial={{ opacity: 0, x: 500 }}
+    >
+      <CardStructure
+        mediaContent={
+          <Stack>
+            <Typography variant="body2" color={"text.secondary"}>
+              {startYear} - {endYear || "Present"}
+            </Typography>
           </Stack>
-        </Stack>
-      }
-    />
+        }
+        mainContent={
+          <Stack spacing={0.5}>
+            <Typography
+              variant="body1"
+              className="text-color-effect"
+              fontWeight={600}
+            >
+              {experience.title}
+              <Typography
+                component={"span"}
+                variant="body1"
+                color={"text.secondary"}
+                className="text-color-effect"
+              >
+                {" "}
+                - {experience.org_name}
+              </Typography>
+            </Typography>
+
+            <Typography
+              variant="body2"
+              color={"text.secondary"}
+              component={"div"}
+              dangerouslySetInnerHTML={{ __html: experience.description }}
+            />
+            <Stack direction={"row"} gap={1} flexWrap={"wrap"}>
+              {experience.tools && (
+                <ToolsChipsContainer tools={experience.tools} />
+              )}
+            </Stack>
+          </Stack>
+        }
+      />
+    </motion.div>
   );
 }
 

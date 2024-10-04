@@ -15,7 +15,7 @@ export default async function Home() {
   return (
     <>
       <Drawer />
-      <Stack pl={DRAWER_WIDTH}>
+      <Stack pl={DRAWER_WIDTH} sx={{ overflowX: "hidden" }}>
         <Stack spacing={12}>
           <ScrollSpyContainer>
             <AboutSection />
