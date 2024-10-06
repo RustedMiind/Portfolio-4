@@ -17,7 +17,7 @@ function AdminHomePage() {
         <Grid container spacing={2}>
           <GridItem>
             <ModuleCard href="/admin/project" title="Projects" />
-          </GridItem>{" "}
+          </GridItem>
           <GridItem>
             <ModuleCard href="/admin/experience" title="Experiences" />
           </GridItem>
@@ -26,6 +26,9 @@ function AdminHomePage() {
           </GridItem>
           <GridItem>
             <ModuleCard href="/admin/cms" title="Content Variables" />
+          </GridItem>
+          <GridItem>
+            <ModuleCard href="/admin/attendance" title="Attendance" />
           </GridItem>
         </Grid>
       </Box>
