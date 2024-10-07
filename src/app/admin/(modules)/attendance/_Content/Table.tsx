@@ -35,10 +35,10 @@ function AttendanceTable({ shifts, refresh }: Props) {
             return (
               <TableRow key={shift.id}>
                 <TableCell> {shift.id} </TableCell>
-                <TableCell> {start.format("DD-MM-YYYY")} </TableCell>
-                <TableCell> {start.format("HH:MM:SS")} </TableCell>
-                <TableCell> {end.format("DD-MM-YYYY")} </TableCell>
-                <TableCell> {end.format("HH:MM:SS")} </TableCell>
+                <TableCell> {start.format("MMMM Do YYYY")} </TableCell>
+                <TableCell> {start.format("h:mm:ss a")} </TableCell>
+                <TableCell> {end.format("MMMM Do YYYY")} </TableCell>
+                <TableCell> {end.format("h:mm:ss a")} </TableCell>
                 <TableCell> {shift.totalHours.toFixed(2)} </TableCell>
                 <TableCell> {shift.pay.toFixed(2)} EGP</TableCell>
                 <TableCell
