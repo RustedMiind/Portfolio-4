@@ -17,6 +17,8 @@ import {
   Stack,
 } from "@mui/material";
 import AddShiftDialog from "./AddShiftDialog";
+import { CSVLink } from "react-csv";
+import { Data } from "react-csv/lib/core";
 
 function AttendanceContent() {
   const [page, setPage] = useState(1);
@@ -26,6 +28,21 @@ function AttendanceContent() {
     queryKey: ["attendance", page],
     queryFn: async () => await getAttendance({ page, limit: 100 }, headers),
   });
+
+  const csvData: Data = data?.data.data
+    ? [
+        ["Shift", "Start Date", "End Date", "Total Hours", "Expected Pay"],
+        ...data.data.data.map((shift, index) => [
+          String(index + 1),
+          shift.start,
+          shift.end,
+          String(shift.totalHours),
+          String(shift.pay),
+        ]),
+        ["Pay Sum", "Total Hours Sum"],
+        [data.statistics.totalPay, data.statistics.totalWorkHours],
+      ]
+    : [];
 
   return (
     <>
@@ -41,6 +58,10 @@ function AttendanceContent() {
         <Button variant="outlined" onClick={() => setDialogOpen(true)}>
           Add New Shift
         </Button>
+        <CSVLink data={csvData} filename="Attendance">
+          Export To Excel
+        </CSVLink>
+        ;
       </Box>
       {data && <AttendanceTable shifts={data.data.data} refresh={refetch} />}
       <Stack alignItems="center">
