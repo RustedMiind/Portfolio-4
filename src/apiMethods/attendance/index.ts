@@ -22,7 +22,7 @@ export const getExperiences = async (params?: ParamsT, noChache?: boolean) => {
 };
 
 export const getAttendance = async (
-  params: { page?: number; perPage?: number },
+  params: { page?: number; limit?: number },
   authHeaders: Record<string, string>
 ) => {
   const response = await axios.get<GetAttendanceShiftsRoot>(api(`attendance`), {
