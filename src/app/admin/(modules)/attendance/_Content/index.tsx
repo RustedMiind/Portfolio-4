@@ -24,7 +24,7 @@ function AttendanceContent() {
   const headers = defaultClientHeaders();
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["attendance", page],
-    queryFn: async () => await getAttendance({ page }, headers),
+    queryFn: async () => await getAttendance({ page, perPage: 100 }, headers),
   });
 
   return (
