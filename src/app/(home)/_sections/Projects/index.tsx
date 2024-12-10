@@ -1,8 +1,12 @@
+"use client";
+
 import { Stack, Typography } from "@mui/material";
 import ProjectCard from "./_ProjectCard.tsx";
 import SectionContainer from "@/components/SectionContainer/index";
 import ForwardLink from "@/components/Links/ForwardLink";
 import { Project } from "@/types/Project/index.js";
+import { motion } from "framer-motion";
+// import { mainTransition } from "@/constants/transition.js";
 
 function ProjectsSection({ projects }: Props) {
   return (
@@ -15,11 +19,13 @@ function ProjectsSection({ projects }: Props) {
       >
         Projects
       </Typography>
-      <Stack spacing={2}>
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </Stack>
+      <motion.div whileInView={"in-view"}>
+        <Stack spacing={2}>
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} order={index} />
+          ))}
+        </Stack>
+      </motion.div>
       <ForwardLink title="View Full Project Archive" href="/archive" />
     </SectionContainer>
   );

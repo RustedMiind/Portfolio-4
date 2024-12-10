@@ -11,11 +11,10 @@ import LinkIcon from "@mui/icons-material/Link";
 import { motion } from "framer-motion";
 import { mainTransition } from "@/constants/transition";
 
-function ProjectCard({ project }: Props) {
+function ProjectCard({ project, order }: Props) {
   return (
     <motion.div
-      transition={mainTransition}
-      whileInView={"in-view"}
+      transition={{ ...mainTransition, delay: (order * 0.25) ** 1.1 }}
       variants={{ "in-view": { opacity: 1, x: 0 } }}
       initial={{ opacity: 0, x: 500 }}
     >
@@ -87,6 +86,7 @@ function ProjectCard({ project }: Props) {
 
 type Props = {
   project: Project;
+  order: number;
 };
 
 export default ProjectCard;
