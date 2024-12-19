@@ -21,7 +21,7 @@ function Drawer() {
             md: 6,
           },
           height: {
-            xs: "100vh",
+            // xs: "100vh",
             md: "100vh",
           },
           top: 0,

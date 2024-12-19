@@ -13,74 +13,77 @@ import { mainTransition } from "@/constants/transition";
 
 function ProjectCard({ project }: Props) {
   return (
-    <motion.div
-      transition={mainTransition}
-      whileInView={"in-view"}
-      variants={{ "in-view": { opacity: 1, x: 0 } }}
-      initial={{ opacity: 0, x: 500 }}
-    >
-      <CardStructure
-        sx={{
-          "&:hover .card-structure-media": {
-            borderColor: "primary.dark",
-          },
-        }}
-        mediaContent={
-          <AspectRatio
-            ratio={16 / 9}
-            boxProps={{
-              sx: {
-                border: "2px solid transparent",
-                borderColor: grey[900],
-              },
-              className: "card-structure-media",
-            }}
-          >
-            <img
-              style={{
-                height: "100%",
-                width: "100%",
-                objectFit: "cover",
-              }}
-              src={project.image}
-              alt="project"
-            />
-          </AspectRatio>
-        }
-        mainContent={
-          <Stack spacing={0.5}>
-            <Typography
-              variant="body1"
-              className="text-color-effect"
-              fontWeight={600}
-              component={"a"}
-              target="_blank"
-              href={project.link}
-              display={"flex"}
-            >
-              {project.name}
-              <Box mx={0.5}>
-                <LinkIcon />
-              </Box>
-            </Typography>
-            <motion.div
-              transition={{ delay: 0.4 }}
-              initial={{ opacity: 0 }}
-              variants={{
-                "in-view": { opacity: 1 },
+    <motion.div whileInView={"in-view"}>
+      <motion.div
+        transition={mainTransition}
+        variants={{ "in-view": { opacity: 1, x: 0 } }}
+        initial={{ opacity: 0, x: 500 }}
+        whileHover={{ x: -10 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <CardStructure
+          sx={{
+            "&:hover .card-structure-media": {
+              borderColor: "primary.dark",
+            },
+          }}
+          mediaContent={
+            <AspectRatio
+              ratio={16 / 9}
+              boxProps={{
+                sx: {
+                  border: "2px solid transparent",
+                  borderColor: grey[900],
+                },
+                className: "card-structure-media",
               }}
             >
-              <Typography
-                variant="body2"
-                color={"text.secondary"}
-                component={"div"}
-                dangerouslySetInnerHTML={{ __html: project.description }}
+              <img
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  objectFit: "cover",
+                }}
+                src={project.image}
+                alt="project"
               />
-            </motion.div>
-            {project.tools && <ToolsChipsContainer tools={project.tools} />}
-          </Stack>
-        }
-      />
+            </AspectRatio>
+          }
+          mainContent={
+            <Stack spacing={0.5}>
+              <Typography
+                variant="body1"
+                className="text-color-effect"
+                fontWeight={600}
+                component={"a"}
+                target="_blank"
+                href={project.link}
+                display={"flex"}
+              >
+                {project.name}
+                <Box mx={0.5}>
+                  <LinkIcon />
+                </Box>
+              </Typography>
+              <motion.div
+                transition={{ delay: 0.4 }}
+                initial={{ opacity: 0 }}
+                variants={{
+                  "in-view": { opacity: 1 },
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  color={"text.secondary"}
+                  component={"div"}
+                  dangerouslySetInnerHTML={{ __html: project.description }}
+                />
+              </motion.div>
+              {project.tools && <ToolsChipsContainer tools={project.tools} />}
+            </Stack>
+          }
+        />
+      </motion.div>
     </motion.div>
   );
 }
